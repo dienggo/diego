@@ -24,6 +24,7 @@ func (a api) Do(router *gin.Engine) {
 
 	api.GET("/member", controllers.MemberController{}.Index)
 	api.GET("/member-lite", controllers.MemberController{}.IndexLite)
+	api.GET("/posts", controllers.HttpExampleController{}.GetPosts)
 }
 
 func Init() api {
