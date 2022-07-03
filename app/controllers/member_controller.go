@@ -41,5 +41,5 @@ func (receiver MemberController) IndexLite(c *gin.Context)  {
 		return
 	}
 
-	c.JSON(200, response.Api().Error(service.Message, service.Data))
+	c.JSON(200, response.Api().Success(service.Message, service.Data))
 }
