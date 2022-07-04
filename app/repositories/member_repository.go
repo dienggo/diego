@@ -15,8 +15,6 @@ type member struct{}
 
 func (mr member) Find(id any) models.Member {
 	m := models.Member{}
-	db := base.OpenDB()
-	db.Gorm().Where("id = ?", id).First(&m)
-	db.Close()
+	base.OpenDB().Gorm().Where("id = ?", id).First(&m)
 	return m
 }

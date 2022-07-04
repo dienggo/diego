@@ -8,6 +8,16 @@ import (
 	"strings"
 )
 
+var instantiation *database = nil
+
+// DbInstantiation Make singleton instantiation
+func DbInstantiation() *database {
+	if instantiation == nil {
+		instantiation = new(database)
+	}
+	return instantiation
+}
+
 type database struct {
 	sqlDB  *sql.DB
 	gormDB *gorm.DB
@@ -18,11 +28,13 @@ func (db database) Gorm() *gorm.DB {
 }
 
 func (db database) Close() {
-	db.sqlDB.Close()
+	if db.sqlDB != nil {
+		db.sqlDB.Close()
+	}
 }
 
-func OpenDB() database {
-	db := database{}
+func OpenDB() *database {
+	db := DbInstantiation()
 
 	dbConfig := config.Database()
 
