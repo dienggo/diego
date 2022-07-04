@@ -28,6 +28,7 @@ func (db database) Gorm() *gorm.DB {
 }
 
 func (db database) Close() {
+	println("closed databse")
 	if db.sqlDB != nil {
 		db.sqlDB.Close()
 	}

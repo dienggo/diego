@@ -2,13 +2,14 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"go_base_project/app/base"
 	"go_base_project/app/controllers"
 	"net/http"
 )
 
 type api struct {}
 
-func (a api) Do(router *gin.Engine) {
+func (a api) Do(router *base.Router) {
 	api := router.Group("/api")
 
 	// Just for example

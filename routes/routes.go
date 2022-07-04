@@ -1,18 +1,19 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
+	"go_base_project/app/base"
 	"go_base_project/routes/api"
 	"go_base_project/routes/web"
 )
 
 type RouteInterface interface {
-	Do(router *gin.Engine)
+	Do(router *base.Router)
 }
 
 func Init() {
-	router := gin.New()
+	router := base.NewRouter()
 	api.Init().Do(router)
 	web.Init().Do(router)
+
 	router.Run()
 }
