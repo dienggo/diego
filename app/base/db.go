@@ -9,6 +9,7 @@ import (
 )
 
 var instantiation *database = nil
+var isDatabaseOpen bool = false
 
 // DbInstantiation Make singleton instantiation
 func DbInstantiation() *database {
@@ -31,6 +32,9 @@ func (db database) Close() {
 	println("closed databse")
 	if db.sqlDB != nil {
 		db.sqlDB.Close()
+		db.sqlDB = nil
+		db.gormDB = nil
+		isDatabaseOpen = false
 	}
 }
 
@@ -38,6 +42,10 @@ func OpenDB() *database {
 	db := DbInstantiation()
 
 	dbConfig := config.Database()
+
+	if isDatabaseOpen == true {
+		return db
+	}
 
 	dsn := dbConfig.Username + ":" + dbConfig.Password + "@tcp(" + dbConfig.Host + ":" + dbConfig.Port + ")/" + dbConfig.Name + "?parseTime=" + strings.ToLower(dbConfig.UseTimestamp)
 	sqlDB, err1 := sql.Open("mysql", dsn)
@@ -57,6 +65,6 @@ func OpenDB() *database {
 
 	db.sqlDB = sqlDB
 	db.gormDB = gormDB
-
+	isDatabaseOpen = true
 	return db
 }
