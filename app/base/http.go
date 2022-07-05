@@ -12,10 +12,11 @@ func HttpService() NetClient {
 }
 
 type NetClient struct {
-	url string
-	method string
-	data map[string]string
-	headers [] headers
+	url     string
+	method  string
+	data    map[string]string
+	headers []headers
+	body    interface{}
 }
 
 type headers struct {
@@ -62,6 +63,11 @@ func (c NetClient) Params(data map[string]string) NetClient {
 	return c
 }
 
+func (c NetClient) Bodys(body interface{}) NetClient {
+	c.body = body
+	return c
+}
+
 func (c NetClient) AddHeader(key string, value string) NetClient {
 	c.headers = append(c.headers, headers{
 		key:   key,
@@ -71,9 +77,9 @@ func (c NetClient) AddHeader(key string, value string) NetClient {
 }
 
 func (c NetClient) Call() (*http.Response, error) {
-	jsonData, _ := json.Marshal(c.data)
-	println(c.method+" url :",c.url)
-	println("parameters :",string(jsonData))
+	jsonData, _ := json.Marshal(c.body)
+	println(c.method+" url :", c.url)
+	println("parameters :", string(jsonData))
 
 	var body io.Reader
 
@@ -82,7 +88,11 @@ func (c NetClient) Call() (*http.Response, error) {
 		body = nil
 		break
 	case http.MethodPost:
+		body = bytes.NewBuffer(jsonData)
+		break
 	case http.MethodPut:
+		body = bytes.NewBuffer(jsonData)
+		break
 	case http.MethodDelete:
 		body = bytes.NewBuffer(jsonData)
 		break
