@@ -4,6 +4,7 @@ import (
 	"go_base_project/app/base"
 	"go_base_project/routes/api"
 	"go_base_project/routes/web"
+	"os"
 )
 
 type RouteInterface interface {
@@ -15,5 +16,5 @@ func Init() {
 	api.Init().Do(router)
 	web.Init().Do(router)
 
-	router.Run()
+	router.Run(os.Getenv("APP_PORT"))
 }
