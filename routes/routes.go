@@ -16,5 +16,5 @@ func Init() {
 	api.Init().Do(router)
 	web.Init().Do(router)
 
-	router.Run(os.Getenv("APP_PORT"))
+	router.Run(":"+os.Getenv("APP_PORT"))
 }
