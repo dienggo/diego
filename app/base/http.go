@@ -100,7 +100,7 @@ func (c NetClient) Call() (*http.Response, error) {
 
 	request, err := http.NewRequest(c.method, c.url, body)
 	for _, val := range c.headers {
-		request.Header.Add(val.key, val.value)
+		request.Header[val.key] = []string{val.value}
 	}
 
 	if c.method == http.MethodGet {
