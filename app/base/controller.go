@@ -21,7 +21,7 @@ func(req request) Value(key string) string {
 		dataPost := req.c.PostForm(key)
 		if dataPost == "" {
 			var myMap = make(map[string]string)
-			req.c.BindJSON(&myMap)
+			req.c.ShouldBindJSON(&myMap)
 			return myMap[key]
 		}
 		return dataPost
