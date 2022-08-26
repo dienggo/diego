@@ -26,6 +26,8 @@ func (a api) Do(router *base.Router) {
 	api.GET("/member", controllers.MemberController{}.Index)
 	api.GET("/member-lite", controllers.MemberController{}.IndexLite)
 	api.GET("/posts", controllers.HttpExampleController{}.GetPosts)
+	api.GET("/test", controllers.ExampleController{}.Index)
+	api.POST("/test", controllers.ExampleController{}.Index)
 }
 
 func Init() api {
