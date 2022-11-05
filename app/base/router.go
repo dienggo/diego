@@ -5,8 +5,8 @@ import "github.com/gin-gonic/gin"
 type handlerFunc func(ctx *gin.Context)
 
 func methodHandler(ctx *gin.Context, handle handlerFunc) {
-	vFunc := func() {handle(ctx)}
-	MethodHandler(vFunc)
+	defer DbInstantiation().Close()
+	handle(ctx)
 }
 
 type RouterInterface interface {
