@@ -47,7 +47,7 @@ func OpenDB() *database {
 		return db
 	}
 
-	dsn := dbConfig.Username + ":" + dbConfig.Password + "@tcp(" + dbConfig.Host + ":" + dbConfig.Port + ")/" + dbConfig.Name + "?parseTime=" + strings.ToLower(dbConfig.UseTimestamp)
+	dsn := dbConfig.Username + ":" + dbConfig.Password + "@tcp(" + dbConfig.Host + ":" + dbConfig.Port + ")/" + dbConfig.Name + "?parseTime=" + strings.ToLower(dbConfig.UseTimestamp)+ "&loc="+dbConfig.TimeZone
 	sqlDB, err1 := sql.Open("mysql", dsn)
 
 	if err1 != nil {

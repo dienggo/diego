@@ -12,6 +12,7 @@ var password string
 var host string
 var port string
 var useTimestamp string
+var timeZone string
 
 type database struct {
 	Name         string
@@ -20,11 +21,14 @@ type database struct {
 	Host         string
 	Port         string
 	UseTimestamp string
+	TimeZone     string
 }
 
 // Database / Getter database configuration
 func Database() database {
-	if !isInstance { instance() }
+	if !isInstance {
+		instance()
+	}
 	db := database{
 		Name:         name,
 		Username:     username,
@@ -32,6 +36,7 @@ func Database() database {
 		Host:         host,
 		Port:         port,
 		UseTimestamp: useTimestamp,
+		TimeZone:     timeZone,
 	}
 	return db
 }
@@ -44,5 +49,6 @@ func instance() {
 	host = os.Getenv("DB_HOST")
 	port = os.Getenv("DB_PORT")
 	useTimestamp = os.Getenv("DB_USE_TIMESTAMP")
+	timeZone = os.Getenv("TIME_ZONE")
 	isInstance = true
 }
