@@ -3,7 +3,6 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"go_base_project/app/base"
-	"go_base_project/app/controllers"
 	"net/http"
 )
 
@@ -22,12 +21,6 @@ func (a api) Do(router *base.Router) {
 			Message: "api hello world!",
 		})
 	})
-
-	api.GET("/member", controllers.MemberController{}.Index)
-	api.GET("/member-lite", controllers.MemberController{}.IndexLite)
-	api.GET("/posts", controllers.HttpExampleController{}.GetPosts)
-	api.GET("/test", controllers.ExampleController{}.Index)
-	api.POST("/test", controllers.ExampleController{}.Index)
 }
 
 func Init() api {
