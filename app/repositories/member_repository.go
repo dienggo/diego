@@ -9,7 +9,7 @@ type MemberRepoInterface interface {
 	Find(id int) models.Member
 }
 
-func Member() member {return member{}}
+func Member() member { return member{} }
 
 type member struct{}
 

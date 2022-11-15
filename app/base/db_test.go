@@ -1,9 +1,7 @@
 package base
 
 import (
-	"github.com/joho/godotenv"
 	"gorm.io/gorm"
-	"testing"
 )
 
 // Example Gorm Model
@@ -18,14 +16,15 @@ type Member struct {
 	ReferalId     int
 }
 
-func TestDatabaseQuery(t *testing.T) {
+ // NOTE: don't call test actually to database 
+// func TestDatabaseQuery(t *testing.T) {
 
-	godotenv.Load("../../.env")
+// 	godotenv.Load("../../.env")
 
-	member := Member{}
+// 	member := Member{}
 
-	memberId := 1
-	OpenDB().Gorm().Where("id = ?", memberId).First(&member)
+// 	memberId := 1
+// 	OpenDB().Gorm().Where("id = ?", memberId).First(&member)
 
-	println("member :",member.Name)
-}
+// 	println("member :", member.Name)
+// }
