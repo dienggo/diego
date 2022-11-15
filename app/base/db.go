@@ -2,6 +2,7 @@ package base
 
 import (
 	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 	"go_base_project/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -28,8 +29,12 @@ func (db database) Gorm() *gorm.DB {
 	return db.gormDB
 }
 
+func (db database) DB() *sql.DB {
+	return db.sqlDB
+}
+
 func (db database) Close() {
-	println("closed databse")
+	println("closed database")
 	if db.sqlDB != nil {
 		db.sqlDB.Close()
 		db.sqlDB = nil
@@ -47,7 +52,7 @@ func OpenDB() *database {
 		return db
 	}
 
-	dsn := dbConfig.Username + ":" + dbConfig.Password + "@tcp(" + dbConfig.Host + ":" + dbConfig.Port + ")/" + dbConfig.Name + "?parseTime=" + strings.ToLower(dbConfig.UseTimestamp)+ "&loc="+dbConfig.TimeZone
+	dsn := dbConfig.Username + ":" + dbConfig.Password + "@tcp(" + dbConfig.Host + ":" + dbConfig.Port + ")/" + dbConfig.Name + "?parseTime=" + strings.ToLower(dbConfig.UseTimestamp) + "&loc=" + dbConfig.TimeZone
 	sqlDB, err1 := sql.Open("mysql", dsn)
 
 	if err1 != nil {

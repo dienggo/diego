@@ -1,26 +1,20 @@
 package api
 
 import (
-	"github.com/gin-gonic/gin"
 	"go_base_project/app/base"
-	"net/http"
+	"go_base_project/app/controllers"
 )
 
-type api struct {}
+type api struct {
+	controllers.UserController
+}
 
 func (a api) Do(router *base.Router) {
 	api := router.Group("/api")
 
-	// Just for example
-	api.GET("/hello_world", func(c *gin.Context) {
-		c.JSON(http.StatusOK, struct {
-			Status  bool   `json:"status"`
-			Message string `json:"message"`
-		}{
-			Status: true,
-			Message: "api hello world!",
-		})
-	})
+	// API user
+	api.GET("/user/:id", a.GetDetail)
+	api.POST("/user", a.CreateUser)
 }
 
 func Init() api {
