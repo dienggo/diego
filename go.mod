@@ -1,6 +1,6 @@
 module go_base_project
 
-go 1.18
+go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.8.1
@@ -9,6 +9,7 @@ require (
 	github.com/joho/godotenv v1.4.0
 	github.com/kr/pretty v0.3.0
 	github.com/stretchr/testify v1.7.2
+	golang.org/x/mod v0.4.2
 	gorm.io/driver/mysql v1.3.4
 	gorm.io/gorm v1.23.7
 )
@@ -45,6 +46,7 @@ require (
 	golang.org/x/net v0.0.0-20220630215102-69896b714898 // indirect
 	golang.org/x/sys v0.0.0-20220702020025-31831981b65f // indirect
 	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
