@@ -96,7 +96,7 @@ func mysqlOpenConnection() *dbc {
 	}
 
 	// Set initiator variable flag to connected for singleton reason
-	isConnected = false
+	isConnected = true
 	dbConnection = &dbc{
 		main:     gormDB,
 		replicas: replicas,
