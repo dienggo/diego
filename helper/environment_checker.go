@@ -19,7 +19,7 @@ func IsExistAllEnvKeys(strings ...string) resultCheckIsExistAllEnvKeys {
 		}
 	}
 	return resultCheckIsExistAllEnvKeys{
-		Status:       len(notExistKeys) > 0,
+		Status:       len(notExistKeys) == 0,
 		NotExistKeys: notExistKeys,
 		ExistKeys:    existKeys,
 	}

@@ -86,7 +86,7 @@ func mysqlOpenConnection() *dbc {
 	var replicas []*gorm.DB
 
 	// Do connection on replicas mysql database
-	if len(db.Replicas) > 1 {
+	if len(db.Replicas) > 0 {
 		for _, replica := range db.Replicas {
 			if replica.Connection == MYSQL {
 				replicaConnect := connectToMySql(replica.Username, replica.Password, replica.Host, replica.Port, replica.Name, replica.UseTimestamp)
