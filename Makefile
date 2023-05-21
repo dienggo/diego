@@ -22,17 +22,4 @@ migration:
 	touch db/migrations/$(timestamp)_${name}.up.sql
 	touch db/migrations/$(timestamp)_${name}.down.sql
 
-rollback:
-	migrate --path=db/migrations/ \
-			--database 'mysql://$(DB_URL)?multiStatements=true' down
-
-migrate: 
-	migrate --path=db/migrations/ \
-			--database 'mysql://$(DB_URL)?multiStatements=true' up
-
-createdb_via_docker:
-	$(DOCKER_CONNECTION) "mysql --host=$(DB_HOST) --user=$(DB_USERNAME) --password=$(DB_PASSWORD) -e 'create database $(DB_NAME)'"
-
-dropdb_via_docker: 
-	$(DOCKER_CONNECTION) "mysql --host=$(DB_HOST) --user=$(DB_USERNAME) --password=${DB_PASSWORD} -e 'drop database $(DB_NAME)'"
-	
+dago:

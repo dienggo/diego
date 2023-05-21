@@ -2,12 +2,14 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"go_base_project/app/controllers"
+	"go_base_project/app/middlewares"
 )
 
 type Api struct{}
 
 func (a Api) Do(route *gin.Engine) {
-	api := route.Group("/api")
+	api := route.Group("/api", middlewares.AppMiddleware)
 
 	// example test api
 	api.GET("ping", func(c *gin.Context) {
@@ -15,4 +17,10 @@ func (a Api) Do(route *gin.Engine) {
 			"message": "pong",
 		})
 	})
+
+	// example test api on controller
+	api.GET("ping-2", controllers.PongController{}.Pong)
+
+	// example call database
+	api.GET("setting-by-key", controllers.SettingController{}.GetByKey)
 }
