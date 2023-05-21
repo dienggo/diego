@@ -129,6 +129,16 @@ func Open() *dbc {
 	return openConnection()
 }
 
+// Main database uses
+func Main() *gorm.DB {
+	return Open().Main()
+}
+
+// Replicas database uses
+func Replicas() []*gorm.DB {
+	return Open().Replicas()
+}
+
 // Close database connection
 func Close() {
 	isConnected = false
@@ -137,5 +147,4 @@ func Close() {
 		return
 	}
 	db.Close()
-
 }

@@ -24,7 +24,7 @@ func TestDatabaseConnection(t *testing.T) {
 	provider.LoadEnv()
 	mm := Member{}
 	defer database.Close()
-	database.Open().Main().Where("id = ?", 2).First(&mm)
+	database.Main().Where("id = ?", 2).First(&mm)
 
 	assert.IsTypef(t, Member{}, mm, "Okee")
 }
