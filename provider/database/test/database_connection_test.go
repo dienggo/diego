@@ -1,8 +1,8 @@
 package test
 
 import (
-	"go_base_project/bootstrap/database"
 	"go_base_project/provider"
+	"go_base_project/provider/database"
 	"testing"
 )
 
