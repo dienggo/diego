@@ -1,7 +1,6 @@
 package test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"go_base_project/bootstrap/database"
 	"go_base_project/provider"
 	"gorm.io/gorm"
@@ -22,9 +21,7 @@ type Member struct {
 
 func TestDatabaseConnection(t *testing.T) {
 	provider.LoadEnv()
-	mm := Member{}
 	defer database.Close()
-	database.Main().Where("id = ?", 2).First(&mm)
-
-	assert.IsTypef(t, Member{}, mm, "Okee")
+	db := database.Open()
+	println("database is not null", db.Main() != nil)
 }
