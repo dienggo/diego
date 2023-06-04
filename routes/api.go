@@ -23,4 +23,5 @@ func (a Api) Do(route *gin.Engine) {
 
 	// example call database
 	api.GET("setting-by-key", controllers.SettingController{}.GetByKey)
+	api.GET("setting-by-key-on-service", controllers.SettingController{}.GetByKeyOnService)
 }
