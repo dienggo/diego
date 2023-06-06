@@ -5,7 +5,7 @@ App Structure :
 - app -> all logic of application requirement
     - base -> base app needed
     - controllers -> controller to consume on route
-    - dto -> data type object (request, response)
+    - dto -> data transfer object (request, response)
     - interfaces -> interface/contract struct needed
     - middlewares -> middleware of the app
     - models -> model of database
