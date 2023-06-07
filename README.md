@@ -10,7 +10,7 @@ App Structure :
     - middlewares -> middleware of the app
     - models -> model of database
     - repositories -> repository to encapsulation query or fetch data
-    - services -> to build logic oof the app
+    - services -> to build logic of the app
 
 - config -> configuration app
 - helper -> helper method
