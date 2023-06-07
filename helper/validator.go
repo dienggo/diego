@@ -5,8 +5,8 @@ import validator2 "github.com/go-playground/validator/v10"
 var validator *validator2.Validate
 var isValidatorInstance bool = false
 
-// validatorInstance : make singleton validator instance
-func validatorInstance() *validator2.Validate {
+// validate : make singleton validator instance
+func validate() *validator2.Validate {
 	if !isValidatorInstance {
 		validator = validator2.New()
 		isValidatorInstance = true
@@ -16,5 +16,5 @@ func validatorInstance() *validator2.Validate {
 
 // ValidateStruct : to validate struct
 func ValidateStruct(s interface{}) error {
-	return validatorInstance().Struct(s)
+	return validate().Struct(s)
 }
