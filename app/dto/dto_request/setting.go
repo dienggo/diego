@@ -1,14 +1,11 @@
 package dto_request
 
-import validation "github.com/go-ozzo/ozzo-validation"
+import "go_base_project/helper"
 
 type SettingByKey struct {
-	Key string `json:"key" form:"key"`
+	Key string `json:"key" validate:"required"`
 }
 
 func (s SettingByKey) Validate() error {
-	return validation.ValidateStruct(&s,
-		// make request 'key` is required
-		validation.Field(&s.Key, validation.Required),
-	)
+	return helper.ValidateStruct(s)
 }
