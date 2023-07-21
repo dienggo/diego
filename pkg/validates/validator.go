@@ -1,4 +1,4 @@
-package helper
+package validates
 
 import (
 	"errors"
@@ -22,27 +22,42 @@ func Validator() *validator2.Validate {
 	return validate()
 }
 
-// FormattedError : to generate format error message
-func FormattedError(err error) error {
+// FormattedErrors : to generate format error messages
+func FormattedErrors(err error) []error {
 	var ve validator2.ValidationErrors
-	var sErrors []string
+	var eErrors []error
 	if errors.As(err, &ve) {
 		for _, fe := range ve {
-			sErrors = append(sErrors, fe.Field()+" field is "+fe.Tag())
+			msg := fe.Field() + " field is " + fe.Tag()
+			eErrors = append(eErrors, errors.New(msg))
 		}
 	}
-	if len(sErrors) == 0 {
+	if len(eErrors) == 0 {
 		return nil
 	}
-	return errors.New(sErrors[0])
+	return eErrors
+}
+
+// FormattedError : to generate format error message
+func FormattedError(err error) error {
+	formats := FormattedErrors(err)
+	if len(formats) == 0 {
+		return nil
+	}
+	return formats[0]
 }
 
 // ValidateStruct : to validate struct
 func ValidateStruct(s interface{}) error {
-	return validate().Struct(s)
+	return Validator().Struct(s)
 }
 
 // ValidateStructFormatted : to validate struct with formatted error message
 func ValidateStructFormatted(s any) error {
 	return FormattedError(ValidateStruct(s))
+}
+
+// ValidateStructFormattedErrors : to validate struct with formatted error messages
+func ValidateStructFormattedErrors(s any) []error {
+	return FormattedErrors(ValidateStruct(s))
 }

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"go_base_project/helper"
+	"go_base_project/pkg/helper"
 	"os"
 )
 

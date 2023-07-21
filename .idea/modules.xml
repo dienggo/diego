@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/go_base_project.iml" filepath="$PROJECT_DIR$/.idea/go_base_project.iml" />
+      <module fileurl="file://$USER_HOME$/oni-rest-engine-go/.idea/oni-rest-engine-go.iml" filepath="$USER_HOME$/oni-rest-engine-go/.idea/oni-rest-engine-go.iml" />
     </modules>
   </component>
 </project>

@@ -2,7 +2,6 @@ package database
 
 import (
 	"database/sql"
-	"errors"
 	"go_base_project/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -27,32 +26,7 @@ func (d dbc) Replicas() []*gorm.DB {
 	return d.replicas
 }
 
-// / To check connection supported by string parameter
-func connectionSupport(c string) bool {
-	var isSupport = false
-	for _, value := range supportedConnections {
-		if strings.ToLower(value) == c {
-			isSupport = true
-		}
-	}
-	return isSupport
-}
-
-// / To check database configuration connection on supported connections
-func checkDatabaseConnectionSupport() error {
-	var db = config.Database()
-	if connectionSupport(db.Connection) == false {
-		return errors.New("Unsupported connection for " + db.Connection + ", supported connection are " + strings.Join(supportedConnections, ","))
-	}
-	for _, replica := range db.Replicas {
-		if connectionSupport(replica.Connection) == false {
-			return errors.New("Unsupported replica connection for " + replica.Connection + ", supported connection are " + strings.Join(supportedConnections, ","))
-		}
-	}
-	return nil
-}
-
-// / Simplify method and reusable method to connect with mysql driver
+// connectToMySql : Simplify method and reusable method to connect with mysql driver
 func connectToMySql(username string, password string, host string, port string, name string, useTimeStamp string) *gorm.DB {
 	dsn := username + ":" + password + "@tcp(" + host + ":" + port + ")/" + name + "?parseTime=" + strings.ToLower(useTimeStamp)
 	sqlDB, err1 := sql.Open(MYSQL, dsn)
@@ -73,7 +47,7 @@ func connectToMySql(username string, password string, host string, port string, 
 	return gormDB
 }
 
-// / To open connection with mysql driver
+// mysqlOpenConnection : To open connection with mysql driver
 func mysqlOpenConnection() *dbc {
 	if isConnected {
 		return dbConnection
@@ -105,7 +79,7 @@ func mysqlOpenConnection() *dbc {
 	return dbConnection
 }
 
-// / To open connection with GORM
+// openConnection : To open connection with GORM
 func openConnection() *dbc {
 	err := checkDatabaseConnectionSupport()
 	if err != nil {

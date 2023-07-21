@@ -1,6 +1,11 @@
-package base
+package services
 
 import "encoding/json"
+
+// IService : base of service and have to implement on created new service
+type IService interface {
+	Do() ServiceResponse
+}
 
 // response : base response on this app
 type response struct {

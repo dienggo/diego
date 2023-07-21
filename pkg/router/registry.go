@@ -1,4 +1,4 @@
-package p_routes
+package router
 
 import (
 	"github.com/gin-gonic/gin"

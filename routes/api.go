@@ -3,13 +3,13 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"go_base_project/app/controllers"
-	"go_base_project/app/middlewares"
+	"go_base_project/app/middleware"
 )
 
 type Api struct{}
 
 func (a Api) Do(route *gin.Engine) {
-	api := route.Group("/api", middlewares.AppMiddleware)
+	api := route.Group("/api", middleware.Add(middleware.App{}).Handle)
 
 	// example test api
 	api.GET("ping", func(c *gin.Context) {

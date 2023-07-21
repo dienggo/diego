@@ -1,4 +1,4 @@
-package provider
+package environment
 
 import (
 	"github.com/joho/godotenv"
@@ -23,7 +23,7 @@ func loadEnv(wd string, increment int) {
 	}
 }
 
-func LoadEnv() {
+func Load() {
 	wd, _ := os.Getwd()
 	loadEnv(wd, 0)
 }

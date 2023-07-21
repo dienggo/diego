@@ -2,8 +2,9 @@ package provider
 
 import (
 	"go_base_project/config"
-	"go_base_project/provider/database"
-	"go_base_project/provider/p_routes"
+	"go_base_project/pkg/database"
+	"go_base_project/pkg/environment"
+	"go_base_project/pkg/router"
 	"time"
 )
 
@@ -12,7 +13,7 @@ type App struct{}
 // Start all application resource
 func (app App) Start() {
 	// Load environment
-	LoadEnv()
+	environment.Load()
 
 	println("\n------------------------------------------------------------")
 	println(config.App().Name + " app starting")
@@ -26,5 +27,5 @@ func (app App) Start() {
 	time.LoadLocation(config.App().TimeZone)
 
 	// Run route configuration
-	p_routes.Run()
+	router.Run()
 }

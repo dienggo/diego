@@ -1,4 +1,4 @@
-package middlewares
+package middleware
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,8 +6,9 @@ import (
 	"net/http"
 )
 
-// AppMiddleware to restrict api connection
-func AppMiddleware(c *gin.Context) {
+type App struct{}
+
+func (App) Handle(c *gin.Context) {
 	appKey := c.GetHeader("app-key")
 	if config.App().Key != appKey {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{

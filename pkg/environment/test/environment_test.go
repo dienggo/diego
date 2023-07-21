@@ -1,10 +1,10 @@
 package test
 
 import (
-	"go_base_project/provider"
+	"go_base_project/pkg/environment"
 	"testing"
 )
 
 func TestLoadEnv(t *testing.T) {
-	provider.LoadEnv()
+	environment.Load()
 }
