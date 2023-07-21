@@ -1,5 +1,9 @@
 package dto_request
 
+import (
+	"go_base_project/pkg/validates"
+)
+
 type SettingByKey struct {
 	Key string `json:"key" validate:"required"`
 }
