@@ -22,7 +22,7 @@ func main() {
 			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "v1.0.5",
+		Version: "v1.0.6",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
