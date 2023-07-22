@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
+	"github.com/daewu14/golang-base/cmd/diego/server"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -21,7 +22,7 @@ func main() {
 			fmt.Println("Hello friend!")
 			return nil
 		},
-		Version: "v1.0.2",
+		Version: "v1.0.3",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -40,6 +41,7 @@ func commandRegistry() []ICommand {
 	return []ICommand{
 		build.New(),
 		generate.New(),
+		server.New(),
 	}
 }
 
