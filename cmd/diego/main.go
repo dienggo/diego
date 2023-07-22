@@ -19,10 +19,10 @@ func main() {
 		Name:  "diego",
 		Usage: "Base REST API lite project",
 		Action: func(c *cli.Context) error {
-			fmt.Println("Hello friend!")
+			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "v1.0.3",
+		Version: "v1.0.4",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",

@@ -1,4 +1,4 @@
-## Golang Base
+## Diego
 
 App Structure : 
 ```
@@ -14,4 +14,23 @@ App Structure :
 - pkg -> package usage in app
 - provider -> behavior app needed
 - route -> app route (api/web)
+```
+
+### Installation Diego tools :
+Get and install tools from github repo
+```shell
+go install github.com/daewu14/golang-base/cmd/diego@latest
+```
+Check your GOPATH location
+```shell
+go env GOPATH
+$ <your-location-gopath>
+```
+Copy path and make alias installed diego, example on macos with **zsh**
+```
+alias diego = "/<your-location-gopath>/bin/diego"
+```
+Use diego
+```shell
+diego -h
 ```
