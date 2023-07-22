@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
+	"github.com/daewu14/golang-base/cmd/diego/server"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -18,10 +19,10 @@ func main() {
 		Name:  "diego",
 		Usage: "Base REST API lite project",
 		Action: func(c *cli.Context) error {
-			fmt.Println("Hello friend!")
+			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "1.0.0",
+		Version: "v1.0.4",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -40,6 +41,7 @@ func commandRegistry() []ICommand {
 	return []ICommand{
 		build.New(),
 		generate.New(),
+		server.New(),
 	}
 }
 
