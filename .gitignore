@@ -25,5 +25,6 @@ go.work
 ### Go Patch ###
 /vendor/
 /Godeps/
+.idea/vcs.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/go

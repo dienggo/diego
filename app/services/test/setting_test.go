@@ -4,7 +4,7 @@ import (
 	"go_base_project/app/dto/dto_request"
 	"go_base_project/app/models"
 	"go_base_project/app/services"
-	"go_base_project/provider"
+	"go_base_project/pkg/environment"
 	"testing"
 )
 
@@ -33,7 +33,7 @@ func (r MockSettingRepo) GetWhere(query interface{}, args ...interface{}) (error
 }
 
 func TestExampleService(t *testing.T) {
-	provider.LoadEnv()
+	environment.Load()
 
 	repo := MockSettingRepo{}.MockResult(mockResult{
 		err: nil,

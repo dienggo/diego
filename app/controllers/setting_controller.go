@@ -5,7 +5,7 @@ import (
 	"go_base_project/app/dto/dto_request"
 	"go_base_project/app/models"
 	"go_base_project/app/services"
-	"go_base_project/provider/database"
+	"go_base_project/pkg/database"
 	"net/http"
 )
 

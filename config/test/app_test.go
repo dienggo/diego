@@ -2,12 +2,12 @@ package test
 
 import (
 	"go_base_project/config"
-	"go_base_project/provider"
+	"go_base_project/pkg/environment"
 	"testing"
 )
 
 func TestAppConfig(t *testing.T) {
-	provider.LoadEnv()
+	environment.Load()
 	app := config.App()
 
 	println("APP NAME", app.Name)
