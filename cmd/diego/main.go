@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
+	"github.com/daewu14/golang-base/cmd/diego/migration"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -40,6 +41,7 @@ func commandRegistry() []ICommand {
 	return []ICommand{
 		build.New(),
 		generate.New(),
+		migration.New(),
 		// server.New(),
 	}
 }

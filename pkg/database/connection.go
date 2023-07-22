@@ -7,6 +7,7 @@ import (
 
 var isConnected = false
 var dbConnection *dbc
+var mainDsn = ""
 
 type IDbConnection interface {
 	Main() *gorm.DB
@@ -54,6 +55,11 @@ func Close() {
 	db.Close()
 }
 
+// GetMainDsn : getting main dsn
+func GetMainDsn() string {
+	return mainDsn
+}
+
 // openConnection : To open connection with GORM
 func openConnection() *dbc {
 	err := checkDatabaseConnectionSupport()
@@ -62,6 +68,10 @@ func openConnection() *dbc {
 	}
 
 	var db = config.Database()
+	if db.Name == "" && db.Username == "" {
+		println("[WARNING] App running without database")
+		return &dbc{}
+	}
 
 	var connection *dbc
 	switch db.Connection {
