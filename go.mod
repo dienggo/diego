@@ -2,13 +2,6 @@ module github.com/daewu14/golang-base
 
 go 1.20
 
-retract (
-	v1.0.3
-	v1.0.2
-	v1.0.1
-	v1.0.0
-)
-
 require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/validator/v10 v10.10.0

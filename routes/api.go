@@ -19,9 +19,9 @@ func (a Api) Do(route *gin.Engine) {
 	})
 
 	// example test api on controller
-	api.GET("ping-2", controllers.PongController{}.Pong)
+	api.GET("ping-2", controllers.Pong{}.Pong)
 
 	// example call database
-	api.GET("setting-by-key", controllers.SettingController{}.GetByKey)
-	api.GET("setting-by-key-on-service", controllers.SettingController{}.GetByKeyOnService)
+	api.GET("setting-by-key", controllers.Setting{}.GetByKey)
+	api.GET("setting-by-key-on-service", controllers.Setting{}.GetByKeyOnService)
 }

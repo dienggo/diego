@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
-	"github.com/daewu14/golang-base/cmd/diego/server"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -22,7 +21,7 @@ func main() {
 			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "v1.0.4",
+		Version: "v1.0.5",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -41,7 +40,7 @@ func commandRegistry() []ICommand {
 	return []ICommand{
 		build.New(),
 		generate.New(),
-		server.New(),
+		// server.New(),
 	}
 }
 

@@ -9,9 +9,9 @@ import (
 	"net/http"
 )
 
-type SettingController struct{}
+type Setting struct{}
 
-func (controller SettingController) GetByKeyOnService(c *gin.Context) {
+func (controller Setting) GetByKeyOnService(c *gin.Context) {
 	var request dto_request.SettingByKey
 
 	// bind data into dto
@@ -38,7 +38,7 @@ func (controller SettingController) GetByKeyOnService(c *gin.Context) {
 	})
 }
 
-func (controller SettingController) GetByKey(c *gin.Context) {
+func (controller Setting) GetByKey(c *gin.Context) {
 
 	var request dto_request.SettingByKey
 

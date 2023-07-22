@@ -18,7 +18,7 @@ func (b build) Command() *cli.Command {
 	return &cli.Command{
 		Name:    "build",
 		Aliases: []string{"b"},
-		Usage:   "Build new project by boilerplate,\nexample : diego -b project_name",
+		Usage:   "Build new project by boilerplate,\nexample : diego b project_name",
 		Action: func(context *cli.Context) error {
 			if context.Args().Get(0) == "" {
 				return errors.New("project name can not be empty")
