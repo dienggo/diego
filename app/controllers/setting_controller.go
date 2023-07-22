@@ -1,11 +1,11 @@
 package controllers
 
 import (
+	"github.com/daewu14/golang-base/app/dto/dto_request"
+	"github.com/daewu14/golang-base/app/models"
+	"github.com/daewu14/golang-base/app/services"
+	"github.com/daewu14/golang-base/pkg/database"
 	"github.com/gin-gonic/gin"
-	"go_base_project/app/dto/dto_request"
-	"go_base_project/app/models"
-	"go_base_project/app/services"
-	"go_base_project/pkg/database"
 	"net/http"
 )
 

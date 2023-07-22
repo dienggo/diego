@@ -1,7 +1,7 @@
 package database
 
 import (
-	"go_base_project/config"
+	"github.com/daewu14/golang-base/config"
 	"gorm.io/gorm"
 )
 

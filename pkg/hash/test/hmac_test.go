@@ -3,7 +3,7 @@ package test
 
 import (
 	"bytes"
-	"go_base_project/pkg/hash"
+	"github.com/daewu14/golang-base/pkg/hash"
 	"testing"
 )
 

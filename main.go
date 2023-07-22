@@ -1,6 +1,6 @@
 package main
 
-import "go_base_project/provider"
+import "github.com/daewu14/golang-base/provider"
 
 func main() {
 	new(provider.App).Start()

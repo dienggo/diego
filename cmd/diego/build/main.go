@@ -34,7 +34,7 @@ func buildProject(projectName string) {
 	repoURL := "https://github.com/daewu14/golang-base.git"
 
 	// base project name
-	baseProjectName := "go_base_project"
+	baseProjectName := "github.com/daewu14/golang-base"
 
 	// Set the destination directory where the repository will be cloned
 	destinationDir := projectName

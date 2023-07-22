@@ -1,4 +1,4 @@
-module go_base_project
+module github.com/daewu14/golang-base
 
 go 1.19
 

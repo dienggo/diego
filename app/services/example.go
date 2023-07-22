@@ -1,9 +1,9 @@
 package services
 
 import (
-	"go_base_project/app/dto/dto_request"
-	"go_base_project/app/interfaces"
-	"go_base_project/app/repositories"
+	"github.com/daewu14/golang-base/app/dto/dto_request"
+	"github.com/daewu14/golang-base/app/interfaces"
+	"github.com/daewu14/golang-base/app/repositories"
 )
 
 // NewExample : make new instance for Example struct

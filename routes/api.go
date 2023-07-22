@@ -1,9 +1,9 @@
 package routes
 
 import (
+	"github.com/daewu14/golang-base/app/controllers"
+	"github.com/daewu14/golang-base/app/middleware"
 	"github.com/gin-gonic/gin"
-	"go_base_project/app/controllers"
-	"go_base_project/app/middleware"
 )
 
 type Api struct{}

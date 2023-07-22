@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/daewu14/golang-base/cmd/diego/build"
+	"github.com/daewu14/golang-base/cmd/diego/generate"
 	"github.com/urfave/cli/v2"
-	"go_base_project/cmd/diego/build"
-	"go_base_project/cmd/diego/generate"
 	"log"
 	"os"
 )

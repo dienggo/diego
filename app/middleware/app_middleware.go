@@ -1,8 +1,8 @@
 package middleware
 
 import (
+	"github.com/daewu14/golang-base/config"
 	"github.com/gin-gonic/gin"
-	"go_base_project/config"
 	"net/http"
 )
 
