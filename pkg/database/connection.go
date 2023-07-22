@@ -8,6 +8,12 @@ import (
 var isConnected = false
 var dbConnection *dbc
 
+type IDbConnection interface {
+	Main() *gorm.DB
+	Replicas() []*gorm.DB
+	Open() *dbc
+}
+
 type dbc struct {
 	main     *gorm.DB
 	replicas []*gorm.DB
@@ -21,25 +27,6 @@ func (d dbc) Main() *gorm.DB {
 // Replicas database connection
 func (d dbc) Replicas() []*gorm.DB {
 	return d.replicas
-}
-
-// openConnection : To open connection with GORM
-func openConnection() *dbc {
-	err := checkDatabaseConnectionSupport()
-	if err != nil {
-		panic(err.Error())
-	}
-
-	var db = config.Database()
-
-	var connection *dbc
-	switch db.Connection {
-	case MYSQL:
-		connection = mysqlOpenConnection()
-	default:
-		connection = mysqlOpenConnection()
-	}
-	return connection
 }
 
 // Open database connection
@@ -65,4 +52,23 @@ func Close() {
 		return
 	}
 	db.Close()
+}
+
+// openConnection : To open connection with GORM
+func openConnection() *dbc {
+	err := checkDatabaseConnectionSupport()
+	if err != nil {
+		panic(err.Error())
+	}
+
+	var db = config.Database()
+
+	var connection *dbc
+	switch db.Connection {
+	case MYSQL:
+		connection = mysqlOpenConnection()
+	default:
+		connection = mysqlOpenConnection()
+	}
+	return connection
 }
