@@ -16,6 +16,8 @@ App Structure :
 - route -> app route (api/web)
 ```
 
+Migration Tools : https://github.com/pressly/goose
+
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
