@@ -21,7 +21,7 @@ func main() {
 			fmt.Println("Hello friend!")
 			return nil
 		},
-		Version: "1.0.0",
+		Version: "v1.0.2",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
