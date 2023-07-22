@@ -2,7 +2,7 @@ package database
 
 import (
 	"database/sql"
-	"go_base_project/config"
+	"github.com/daewu14/golang-base/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"strings"

@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"go_base_project/pkg/file"
+	"github.com/daewu14/golang-base/pkg/file"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"strings"

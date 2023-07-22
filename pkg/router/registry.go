@@ -1,9 +1,9 @@
 package router
 
 import (
+	"github.com/daewu14/golang-base/config"
+	"github.com/daewu14/golang-base/routes"
 	"github.com/gin-gonic/gin"
-	"go_base_project/config"
-	"go_base_project/routes"
 )
 
 var routeRegistry = []IRoute{

@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"go_base_project/app/models"
-	"go_base_project/pkg/database"
+	"github.com/daewu14/golang-base/app/models"
+	"github.com/daewu14/golang-base/pkg/database"
 )
 
 type SettingRepo struct{}

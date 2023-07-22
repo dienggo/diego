@@ -1,6 +1,6 @@
 package interfaces
 
-import "go_base_project/app/models"
+import "github.com/daewu14/golang-base/app/models"
 
 type ISettingRepo interface {
 	FindByKey(value string) (error, models.Setting)
