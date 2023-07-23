@@ -6,6 +6,7 @@ import (
 	"github.com/daewu14/golang-base/pkg/database"
 	"github.com/daewu14/golang-base/pkg/environment"
 	"github.com/daewu14/golang-base/pkg/helper"
+	"github.com/daewu14/golang-base/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"
@@ -69,7 +70,7 @@ func migrate(get string, cdMigration bool) {
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
-		println("error m 1", err.Error())
+		logger.Error("Error Migration", logger.SetField("error", err.Error()))
 		return
 	}
 }

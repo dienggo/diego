@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/daewu14/golang-base/config"
+	"github.com/daewu14/golang-base/pkg/logger"
 	"github.com/daewu14/golang-base/routes"
 	"github.com/gin-gonic/gin"
 )
@@ -14,6 +15,9 @@ var routeRegistry = []IRoute{
 // Run routers registered
 func Run() {
 	router := gin.Default()
+
+	router.Use(handler)
+
 	// bind route registered
 	for _, r := range routeRegistry {
 		r.Do(router)
@@ -22,6 +26,7 @@ func Run() {
 	// run router with specific port app configuration
 	err := router.Run(":" + config.App().Port)
 	if err != nil {
-		panic("error run router : " + err.Error())
+		logger.Fatal("Error HTTP Server", logger.SetField("error", err.Error()))
 	}
+
 }

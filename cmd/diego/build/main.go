@@ -3,6 +3,7 @@ package build
 import (
 	"errors"
 	"fmt"
+	"github.com/daewu14/golang-base/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"
@@ -59,12 +60,10 @@ func buildProject(projectName string) {
 
 	err = exec.Command("sh", "-c", sCommandReplace).Run()
 	if err != nil {
-		println("1", err.Error())
-		return
+		logger.Fatal("Error buildProject sCommandReplace : " + err.Error())
 	}
 	err = exec.Command("sh", "-c", sCommand).Run()
 	if err != nil {
-		println("2", err.Error())
-		return
+		logger.Fatal("Error buildProject sCommand : " + err.Error())
 	}
 }
