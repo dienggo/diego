@@ -37,12 +37,11 @@ import "github.com/gin-gonic/gin"
 
 type ` + structName + ` struct{}
 
-func (controller ` + structName + `) Main(c *gin.Context) {
+func (ctrl ` + structName + `) Main(c *gin.Context) {
 	c.JSON(200, gin.H{
-		"message": "pong 2",
+		"message": "Hello world!",
 	})
 }
-
 `
 	err := file.Create(fileName, content)
 	if err != nil {

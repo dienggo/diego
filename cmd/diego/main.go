@@ -5,6 +5,7 @@ import (
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
 	"github.com/daewu14/golang-base/cmd/diego/migration"
+	"github.com/daewu14/golang-base/cmd/diego/update"
 	"github.com/daewu14/golang-base/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
@@ -23,7 +24,7 @@ func main() {
 			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "v1.1.2",
+		Version: "v1.2.0",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -43,6 +44,7 @@ func commandRegistry() []ICommand {
 		build.New(),
 		generate.New(),
 		migration.New(),
+		update.New(),
 		// server.New(),
 	}
 }
