@@ -11,7 +11,7 @@ import (
 func buildStructName(structName string) (s string) {
 	s = strings.Replace(structName, ".go", "", -1)
 
-	s = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(structName, " ")
+	s = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(s, " ")
 
 	split := strings.Split(s, " ")
 	for i, s2 := range split {
