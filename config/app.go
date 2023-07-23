@@ -1,6 +1,9 @@
 package config
 
-import "os"
+import (
+	"github.com/daewu14/golang-base/pkg/helper"
+	"os"
+)
 
 var a app
 var appInstance bool = false
@@ -12,6 +15,7 @@ type app struct {
 	Port     string
 	Key      string
 	Env      string
+	Debug    bool
 	TimeZone string
 }
 
@@ -33,6 +37,7 @@ func App() app {
 			Port:     os.Getenv("APP_PORT"),
 			Key:      os.Getenv("APP_KEY"),
 			Env:      os.Getenv("APP_ENV"),
+			Debug:    helper.StringToBool(os.Getenv("APP_DEBUG")),
 			TimeZone: os.Getenv("TIME_ZONE"),
 		}
 		appInstance = true

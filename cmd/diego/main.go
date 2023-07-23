@@ -5,8 +5,8 @@ import (
 	"github.com/daewu14/golang-base/cmd/diego/build"
 	"github.com/daewu14/golang-base/cmd/diego/generate"
 	"github.com/daewu14/golang-base/cmd/diego/migration"
+	"github.com/daewu14/golang-base/pkg/logger"
 	"github.com/urfave/cli/v2"
-	"log"
 	"os"
 )
 
@@ -15,14 +15,15 @@ type ICommand interface {
 }
 
 func main() {
+	logger.SetJSONFormatter()
 	app := &cli.App{
 		Name:  "diego",
-		Usage: "Base REST API lite project",
+		Usage: "Simple base REST API project",
 		Action: func(c *cli.Context) error {
 			fmt.Println("Hi, welcome to diego framework!")
 			return nil
 		},
-		Version: "v1.0.6",
+		Version: "v1.1.0",
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -33,7 +34,7 @@ func main() {
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
+		logger.Error("Error Command", logger.SetField("error", err.Error()))
 	}
 }
 
