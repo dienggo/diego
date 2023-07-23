@@ -28,6 +28,7 @@ func (gen generate) Command() *cli.Command {
 					return nil
 				},
 			},
+			service{}.Command(),
 		},
 	}
 }
