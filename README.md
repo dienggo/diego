@@ -36,3 +36,7 @@ Use diego
 ```shell
 diego -h
 ```
+Update Diego (available at version >= v1.2.0)
+```shell
+diego update
+```
