@@ -11,6 +11,14 @@ import (
 	"os"
 )
 
+const (
+	name        = "diego"
+	usage       = "diego"
+	greetings   = "Hi, welcome to diego framework!"
+	version     = "v1.2.1"
+	nextVersion = "v1.2.2"
+)
+
 type ICommand interface {
 	Command() *cli.Command
 }
@@ -18,13 +26,13 @@ type ICommand interface {
 func main() {
 	logger.SetJSONFormatter()
 	app := &cli.App{
-		Name:  "diego",
-		Usage: "Simple base REST API project",
+		Name:  name,
+		Usage: usage,
 		Action: func(c *cli.Context) error {
-			fmt.Println("Hi, welcome to diego framework!")
+			fmt.Println(greetings)
 			return nil
 		},
-		Version: "v1.2.0",
+		Version: version,
 		Authors: []*cli.Author{
 			{
 				Name:  "Daewu Bintara",
@@ -44,7 +52,7 @@ func commandRegistry() []ICommand {
 		build.New(),
 		generate.New(),
 		migration.New(),
-		update.New(),
+		update.New(nextVersion, version),
 		// server.New(),
 	}
 }

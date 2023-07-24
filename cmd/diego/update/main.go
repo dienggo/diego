@@ -7,32 +7,39 @@ import (
 	"os/exec"
 )
 
-func New() update {
-	return update{}
+func New(nextVersion string, currentVersion string) update {
+	return update{nextVersion, currentVersion}
 }
 
-type update struct{}
+type update struct {
+	nextVersion    string
+	currentVersion string
+}
 
 func (c update) Command() *cli.Command {
 	return &cli.Command{
 		Name:    "update",
 		Aliases: []string{"updt", "upgrade"},
-		Usage:   "Get update diego version",
+		Usage:   "Get update diego version (beta)",
 		Action:  c.update,
 	}
 }
 
 func (c update) update(context *cli.Context) error {
 	cmd := exec.Command("go", "clean")
-	c.setOutputCmd(cmd)
-	cmd = exec.Command("go", "install", "github.com/daewu14/golang-base/cmd/diego@latest")
-	c.setOutputCmd(cmd)
-	cmd = exec.Command("sh", "-c", "diego -v")
-	c.setOutputCmd(cmd)
+	_ = c.setOutputCmd(cmd)
+	cmd = exec.Command("go", "install", "github.com/daewu14/golang-base/cmd/diego@"+c.nextVersion)
+	err := c.setOutputCmd(cmd)
+	if err != nil {
+		cmd = exec.Command("go", "install", "github.com/daewu14/golang-base/cmd/diego@"+c.currentVersion)
+		_ = c.setOutputCmd(cmd)
+	}
+	cmd = exec.Command("diego", "-v")
+	_ = c.setOutputCmd(cmd)
 	return nil
 }
 
-func (c update) setOutputCmd(cmd *exec.Cmd) {
+func (c update) setOutputCmd(cmd *exec.Cmd) error {
 	// Set the output to the console
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -41,5 +48,7 @@ func (c update) setOutputCmd(cmd *exec.Cmd) {
 	err := cmd.Run()
 	if err != nil {
 		logger.Error("Error get update : " + err.Error())
+		return err
 	}
+	return nil
 }
