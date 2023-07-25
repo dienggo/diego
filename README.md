@@ -29,7 +29,7 @@ $ <your-location-gopath>
 ```
 Copy path and make alias installed diego, example on macos with **zsh**
 ```
-alias diego = "/<your-location-gopath>/bin/diego"
+alias diego="/<your-location-gopath>/bin/diego"
 ```
 Use diego
 ```shell
