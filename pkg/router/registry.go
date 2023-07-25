@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/logger"
-	"github.com/daewu14/golang-base/routes"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/logger"
+	"github.com/dienggo/diego/routes"
 	"github.com/gin-gonic/gin"
 )
 

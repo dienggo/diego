@@ -2,7 +2,7 @@ package generate
 
 import (
 	"errors"
-	"github.com/daewu14/golang-base/pkg/file"
+	"github.com/dienggo/diego/pkg/file"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"

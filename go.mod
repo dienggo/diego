@@ -1,4 +1,4 @@
-module github.com/daewu14/golang-base
+module github.com/dienggo/diego
 
 go 1.20
 

@@ -4,8 +4,8 @@ package logger
 import (
 	"context"
 	"fmt"
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/helper"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/helper"
 	"github.com/sirupsen/logrus"
 )
 

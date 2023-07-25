@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/daewu14/golang-base/cmd/diego/build"
-	"github.com/daewu14/golang-base/cmd/diego/generate"
-	"github.com/daewu14/golang-base/cmd/diego/migration"
-	"github.com/daewu14/golang-base/cmd/diego/update"
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/cmd/diego/build"
+	"github.com/dienggo/diego/cmd/diego/generate"
+	"github.com/dienggo/diego/cmd/diego/migration"
+	"github.com/dienggo/diego/cmd/diego/update"
+	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 )

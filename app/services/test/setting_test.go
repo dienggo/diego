@@ -1,10 +1,10 @@
 package test
 
 import (
-	"github.com/daewu14/golang-base/app/dto/dto_request"
-	"github.com/daewu14/golang-base/app/models"
-	"github.com/daewu14/golang-base/app/services"
-	"github.com/daewu14/golang-base/pkg/environment"
+	"github.com/dienggo/diego/app/dto/dto_request"
+	"github.com/dienggo/diego/app/models"
+	"github.com/dienggo/diego/app/services"
+	"github.com/dienggo/diego/pkg/environment"
 	"testing"
 )
 

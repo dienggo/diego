@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/daewu14/golang-base/provider"
+	"github.com/dienggo/diego/provider"
 	"github.com/urfave/cli/v2"
 )
 

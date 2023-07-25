@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"github.com/daewu14/golang-base/pkg/file"
+	"github.com/dienggo/diego/pkg/file"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"regexp"

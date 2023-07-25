@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/logger"
 	"gorm.io/gorm"
 )
 

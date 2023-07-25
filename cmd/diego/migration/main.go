@@ -2,11 +2,11 @@ package migration
 
 import (
 	"errors"
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/database"
-	"github.com/daewu14/golang-base/pkg/environment"
-	"github.com/daewu14/golang-base/pkg/helper"
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/database"
+	"github.com/dienggo/diego/pkg/environment"
+	"github.com/dienggo/diego/pkg/helper"
+	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"

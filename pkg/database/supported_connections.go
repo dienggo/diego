@@ -2,7 +2,7 @@ package database
 
 import (
 	"errors"
-	"github.com/daewu14/golang-base/config"
+	"github.com/dienggo/diego/config"
 	"strings"
 )
 

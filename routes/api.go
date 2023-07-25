@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"github.com/daewu14/golang-base/app/controllers"
-	"github.com/daewu14/golang-base/app/middleware"
+	"github.com/dienggo/diego/app/controllers"
+	"github.com/dienggo/diego/app/middleware"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package update
 
 import (
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"
@@ -28,10 +28,10 @@ func (c update) Command() *cli.Command {
 func (c update) update(context *cli.Context) error {
 	cmd := exec.Command("go", "clean")
 	_ = c.setOutputCmd(cmd)
-	cmd = exec.Command("go", "install", "github.com/daewu14/golang-base/cmd/diego@"+c.nextVersion)
+	cmd = exec.Command("go", "install", "github.com/dienggo/diego/cmd/diego@"+c.nextVersion)
 	err := c.setOutputCmd(cmd)
 	if err != nil {
-		cmd = exec.Command("go", "install", "github.com/daewu14/golang-base/cmd/diego@"+c.currentVersion)
+		cmd = exec.Command("go", "install", "github.com/dienggo/diego/cmd/diego@"+c.currentVersion)
 		_ = c.setOutputCmd(cmd)
 	}
 	cmd = exec.Command("diego", "-v")

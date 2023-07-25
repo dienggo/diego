@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/daewu14/golang-base/pkg/helper"
+	"github.com/dienggo/diego/pkg/helper"
 	"os"
 )
 

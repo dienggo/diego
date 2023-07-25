@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/daewu14/golang-base/pkg/hash"
+	"github.com/dienggo/diego/pkg/hash"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

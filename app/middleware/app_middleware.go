@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/daewu14/golang-base/config"
+	"github.com/dienggo/diego/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

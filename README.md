@@ -20,7 +20,7 @@ Migration Tools : https://github.com/pressly/goose
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/daewu14/golang-base/cmd/diego@v1.2.1
+go install github.com/dienggo/diego/cmd/diego@v1.2.1
 ```
 Check your GOPATH location
 ```shell

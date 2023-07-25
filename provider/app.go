@@ -1,10 +1,10 @@
 package provider
 
 import (
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/database"
-	"github.com/daewu14/golang-base/pkg/environment"
-	"github.com/daewu14/golang-base/pkg/router"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/database"
+	"github.com/dienggo/diego/pkg/environment"
+	"github.com/dienggo/diego/pkg/router"
 	"time"
 )
 

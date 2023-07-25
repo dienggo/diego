@@ -3,7 +3,7 @@ package build
 import (
 	"errors"
 	"fmt"
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"
@@ -31,11 +31,11 @@ func (b build) Command() *cli.Command {
 }
 
 func buildProject(projectName string) {
-	// Replace the URL below with the Git repository you want to clone
-	repoURL := "https://github.com/daewu14/golang-base.git"
+	// Repository URL
+	repoURL := "https://github.com/dienggo/diego.git"
 
 	// base project name
-	baseProjectName := "github.com/daewu14/golang-base"
+	baseProjectName := "github.com/dienggo/diego"
 
 	// Set the destination directory where the repository will be cloned
 	destinationDir := projectName

@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/daewu14/golang-base/app/models"
-	"github.com/daewu14/golang-base/pkg/database"
+	"github.com/dienggo/diego/app/models"
+	"github.com/dienggo/diego/pkg/database"
 )
 
 type ISetting interface {

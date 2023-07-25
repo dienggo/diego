@@ -1,8 +1,8 @@
 package test
 
 import (
-	"github.com/daewu14/golang-base/config"
-	"github.com/daewu14/golang-base/pkg/environment"
+	"github.com/dienggo/diego/config"
+	"github.com/dienggo/diego/pkg/environment"
 	"testing"
 )
 

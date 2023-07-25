@@ -1,7 +1,7 @@
 package dto_request
 
 import (
-	"github.com/daewu14/golang-base/pkg/validates"
+	"github.com/dienggo/diego/pkg/validates"
 )
 
 type SettingByKey struct {

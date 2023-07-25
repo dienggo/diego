@@ -2,7 +2,7 @@ package router
 
 import (
 	"encoding/json"
-	"github.com/daewu14/golang-base/pkg/logger"
+	"github.com/dienggo/diego/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"io"
 )

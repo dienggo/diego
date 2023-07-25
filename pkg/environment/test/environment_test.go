@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/daewu14/golang-base/pkg/environment"
+	"github.com/dienggo/diego/pkg/environment"
 	"testing"
 )
 

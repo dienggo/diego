@@ -1,8 +1,8 @@
 package test
 
 import (
-	"github.com/daewu14/golang-base/pkg/database"
-	"github.com/daewu14/golang-base/pkg/environment"
+	"github.com/dienggo/diego/pkg/database"
+	"github.com/dienggo/diego/pkg/environment"
 	"testing"
 )
 
