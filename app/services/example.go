@@ -2,7 +2,6 @@ package services
 
 import (
 	"github.com/daewu14/golang-base/app/dto/dto_request"
-	"github.com/daewu14/golang-base/app/interfaces"
 	"github.com/daewu14/golang-base/app/repositories"
 )
 
@@ -10,13 +9,13 @@ import (
 func NewExample(settingByKey dto_request.SettingByKey) Example {
 	return Example{
 		Request:     settingByKey,
-		SettingRepo: repositories.SettingRepo{},
+		SettingRepo: repositories.Setting{},
 	}
 }
 
 type Example struct {
 	Request     dto_request.SettingByKey
-	SettingRepo interfaces.ISettingRepo
+	SettingRepo repositories.ISetting
 }
 
 func (s Example) Do() ServiceResponse {
