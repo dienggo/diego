@@ -29,6 +29,7 @@ func (gen generate) Command() *cli.Command {
 				},
 			},
 			service{}.Command(),
+			middleware{}.Command(),
 		},
 	}
 }

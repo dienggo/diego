@@ -31,6 +31,11 @@ Copy path and make alias installed diego, example on macos with **zsh**
 ```
 alias diego="/<your-location-gopath>/bin/diego"
 ```
+Example : 
+```
+alias diego="/usr/development/go/bin/diego"
+```
+
 Use diego
 ```shell
 diego -h
@@ -39,3 +44,25 @@ Update Diego (**beta** - available at version >= v1.2.0)
 ```shell
 diego update
 ```
+
+### Diego Command Tools
+- #### Build New Project
+    ```shell
+    diego build awesome_project
+    ```
+  awesome_project -> your project name & module
+- #### Make Controller
+    ```shell
+    diego generate controller example_case
+    ```
+    example_case -> your controller & controller stored to `app/controllers/example_case.go`
+- #### Make Service
+    ```shell
+    diego generate service example_case
+    ```
+    example_case -> your service & service stored to `app/services/example_case.go`
+- #### Make Middleware
+    ```shell
+    diego generate service example_case
+    ```
+    example_case -> your middleware & middleware stored to `app/middleware/example_case.go`
