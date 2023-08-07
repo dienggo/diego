@@ -3,6 +3,7 @@ package build
 import (
 	"errors"
 	"fmt"
+	"github.com/dienggo/diego/pkg/helper"
 	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 	"os"
@@ -38,7 +39,7 @@ func buildProject(projectName string) {
 	baseProjectName := "github.com/dienggo/diego"
 
 	// Set the destination directory where the repository will be cloned
-	destinationDir := projectName
+	destinationDir := helper.ReplaceSpecialCharacters(projectName, "_")
 
 	cmd := exec.Command("git", "clone", repoURL, destinationDir)
 
