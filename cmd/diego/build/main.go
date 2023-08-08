@@ -3,11 +3,13 @@ package build
 import (
 	"errors"
 	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
+
 	"github.com/dienggo/diego/pkg/helper"
 	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
-	"os"
-	"os/exec"
 )
 
 func New() build {
@@ -59,11 +61,16 @@ func buildProject(projectName string) {
 	sCommandReplace := "cd " + destinationDir + " && find . -type f -name '*.go' -exec sed -i '' 's#" + baseProjectName + "#" + destinationDir + "#g' {} +\n"
 	sCommand := "cd " + destinationDir + " && go mod edit -module=" + destinationDir + " && go mod tidy && rm -rf .git"
 
-	err = exec.Command("sh", "-c", sCommandReplace).Run()
+	terminal := "sh"
+	if runtime.GOOS == "windows" {
+		terminal = "cmd"
+	}
+
+	err = exec.Command(terminal, "-c", sCommandReplace).Run()
 	if err != nil {
 		logger.Fatal("Error buildProject sCommandReplace : " + err.Error())
 	}
-	err = exec.Command("sh", "-c", sCommand).Run()
+	err = exec.Command(terminal, "-c", sCommand).Run()
 	if err != nil {
 		logger.Fatal("Error buildProject sCommand : " + err.Error())
 	}
