@@ -15,8 +15,8 @@ const (
 	name        = "diego"
 	usage       = "diego"
 	greetings   = "Hi, welcome to diego framework!"
-	version     = "v1.2.3"
-	nextVersion = "v1.2.4"
+	version     = "v1.2.4"
+	nextVersion = "v1.2.5"
 )
 
 type ICommand interface {
@@ -37,6 +37,10 @@ func main() {
 			{
 				Name:  "Daewu Bintara",
 				Email: "daewu.bintara1996@gmail.com",
+			},
+			{
+				Name:  "Ahdiyat Lalu",
+				Email: "ahdiyatlalu@gmail.com",
 			},
 		},
 		Commands: commands(),

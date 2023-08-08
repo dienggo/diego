@@ -20,9 +20,9 @@ Migration Tools : https://github.com/pressly/goose
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.2.3
+go install github.com/dienggo/diego/cmd/diego@v1.2.4
 ```
-Check your GOPATH location
+Check your GOPATH location, windows -> skip this step
 ```shell
 go env GOPATH
 $ <your-location-gopath>
