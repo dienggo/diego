@@ -2,15 +2,17 @@ package migration
 
 import (
 	"errors"
+	"os"
+	"os/exec"
+	"runtime"
+	"strings"
+
 	"github.com/dienggo/diego/config"
 	"github.com/dienggo/diego/pkg/database"
 	"github.com/dienggo/diego/pkg/environment"
 	"github.com/dienggo/diego/pkg/helper"
 	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
-	"os"
-	"os/exec"
-	"strings"
 )
 
 func New() migration {
@@ -63,7 +65,13 @@ func migrate(get string, cdMigration bool) {
 	if cdMigration {
 		prefix = "cd migrations && "
 	}
-	cmd := exec.Command("sh", "-c", prefix+`goose `+config.Database().Connection+` "`+database.GetMainDsn()+`" `+get)
+
+	terminal := "sh"
+	if runtime.GOOS == "windows" {
+		terminal = "cmd"
+	}
+	
+	cmd := exec.Command(terminal, "-c", prefix+`goose `+config.Database().Connection+` "`+database.GetMainDsn()+`" `+get)
 
 	// Set the output to the console
 	cmd.Stdout = os.Stdout
