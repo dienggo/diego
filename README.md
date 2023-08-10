@@ -15,12 +15,10 @@ App Structure :
 - route -> app route (api/web)
 ```
 
-Migration Tools : https://github.com/pressly/goose
-
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.2.5
+go install github.com/dienggo/diego/cmd/diego@v1.2.6
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -66,3 +64,61 @@ diego update
     diego generate service example_case
     ```
     example_case -> your middleware & middleware stored to `app/middleware/example_case.go`
+
+### Migration Tools
+Cause this framework depends on `goose`, install `goose` first ---> https://github.com/pressly/goose <br/>
+- Get help usage
+  ```shell
+  diego migration -h
+  ```
+- Migrate the DB to the most recent version available
+  ```shell
+  diego migration up
+  ```                   
+- Migrate the DB up by 1
+  ```shell
+  diego migration up-by-one
+  ```            
+- Migrate the DB to a specific VERSION
+  ```shell
+  diego migration up-to VERSION
+  ```        
+- Roll back the version by 1
+  ```shell
+  diego migration down
+  ```                 
+- Roll back to a specific VERSION
+  ```shell
+  diego migration down-to VERSION
+  ```      
+  example : `migration down-to 123`
+- Re-run the latest migration
+  ```shell
+  diego migration redo
+  ```                 
+- Roll back all migrations
+  ```shell
+  diego migration reset
+  ```                
+- Dump the migration status for the current DB
+  ```shell
+  diego migration status
+  ```               
+- Print the current version of the database
+  ```shell
+  diego migration version
+  ```              
+- Creates new migration file with the current timestamp
+  ```shell
+  diego migration create NAME [sql|go]
+  ```
+  example : `diego migration create your_table sql`
+- Apply sequential ordering to migrations
+  ```shell
+  diego migration fix
+  ```                  
+- Check migration files without running them
+  ```shell
+  diego migration validate
+  ```             
+
