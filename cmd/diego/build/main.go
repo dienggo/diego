@@ -66,6 +66,10 @@ func buildProject(projectName string) {
 		terminal = "cmd"
 	}
 
+	if runtime.GOOS == "linux" {
+		sCommandReplace = `grep -rlZ "` + baseProjectName + `" . | xargs -0 sed -i '` + destinationDir + `'`
+	}
+
 	err = exec.Command(terminal, "-c", sCommandReplace).Run()
 	if err != nil {
 		logger.Fatal("Error buildProject sCommandReplace : " + err.Error())

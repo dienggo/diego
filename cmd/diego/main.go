@@ -15,8 +15,8 @@ const (
 	name        = "diego"
 	usage       = "diego"
 	greetings   = "Hi, welcome to diego framework!"
-	version     = "v1.2.4"
-	nextVersion = "v1.2.5"
+	version     = "v1.2.5"
+	nextVersion = "v1.2.6"
 )
 
 type ICommand interface {

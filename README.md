@@ -5,7 +5,7 @@ App Structure :
 - app -> all logic of application requirement
     - controllers -> controller to consume on route
     - dto -> data transfer object (request, response)
-    - middlewares -> middleware of the app
+    - middleware -> middleware of the app
     - models -> model of database
     - repositories -> repository to encapsulation query or fetch data
     - services -> to build logic of the app
@@ -20,7 +20,7 @@ Migration Tools : https://github.com/pressly/goose
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.2.4
+go install github.com/dienggo/diego/cmd/diego@v1.2.5
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
