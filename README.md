@@ -15,10 +15,21 @@ App Structure :
 - route -> app route (api/web)
 ```
 
+### Application Command Tools
+- Run HTTP server
+  ```shell
+  <your-app> http serve
+  ```
+  example : `my_app http server`
+- Run HTTP server on Development/Local Machine
+  ```shell
+  go run main.go http serve
+  ```
+
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.2.6
+go install github.com/dienggo/diego/cmd/diego@v1.2.7
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -64,6 +75,16 @@ diego update
     diego generate service example_case
     ```
     example_case -> your middleware & middleware stored to `app/middleware/example_case.go`
+- #### Make Command
+    ```shell
+    diego generate cmd example_case
+    ```
+  example_case -> your command & command stored to `cmd/example_case.go` & also registered on provider/cmd.go automatically. <br/>
+  run your command on development/local :
+  ```shell
+  go run main.go <your-command-name-or-alias>
+  ```
+  example : `go run main.go my-command`
 
 ### Migration Tools
 Cause this framework depends on `goose`, install `goose` first ---> https://github.com/pressly/goose <br/>

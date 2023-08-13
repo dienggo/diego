@@ -59,7 +59,7 @@ func buildProject(projectName string) {
 	fmt.Println("Repository cloned successfully.")
 
 	sCommandReplace := "cd " + destinationDir + " && find . -type f -name '*.go' -exec sed -i '' 's#" + baseProjectName + "#" + destinationDir + "#g' {} +\n"
-	sCommand := "cd " + destinationDir + " && go mod edit -module=" + destinationDir + " && go mod tidy && rm -rf .git"
+	sCommand := "cd " + destinationDir + " && go mod edit -module=" + destinationDir + " && go mod tidy && rm -rf .git && rm -rf cmd/diego"
 
 	terminal := "sh"
 	if runtime.GOOS == "windows" {

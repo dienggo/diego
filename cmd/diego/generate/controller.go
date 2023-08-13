@@ -2,6 +2,7 @@ package generate
 
 import (
 	"github.com/dienggo/diego/pkg/file"
+	"github.com/dienggo/diego/pkg/helper"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"regexp"
@@ -24,6 +25,7 @@ func buildStructName(structName string) (s string) {
 
 func Controller(controllerName string) {
 	// The name of the file to create.
+	controllerName = helper.ReplaceSpecialCharacters(controllerName, "_")
 	fileName := "app/controllers/" + controllerName + ".go"
 
 	structName := cases.Title(language.English, cases.NoLower).String(strings.Replace(fileName, "app/controllers/", "", -1))

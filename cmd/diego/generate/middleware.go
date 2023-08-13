@@ -3,6 +3,7 @@ package generate
 import (
 	"errors"
 	"github.com/dienggo/diego/pkg/file"
+	"github.com/dienggo/diego/pkg/helper"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -19,7 +20,7 @@ func (c middleware) Command() *cli.Command {
 			if context.Args().Get(0) == "" {
 				return errors.New("middleware name can not be empty")
 			}
-			c.build(context.Args().Get(0))
+			c.build(helper.ReplaceSpecialCharacters(context.Args().Get(0), "_"))
 			return nil
 		},
 	}
