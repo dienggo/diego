@@ -48,13 +48,15 @@ func Replicas() []*gorm.DB {
 
 // Close database connection
 func Close() {
-	isConnected = false
-	db, err := openConnection().Main().DB()
-	if err != nil {
-		logger.Error("Close Connection", logger.SetField("error", err.Error()))
-		return
+	if isConnected == true {
+		isConnected = false
+		db, err := openConnection().Main().DB()
+		if err != nil {
+			logger.Error("Close Connection", logger.SetField("error", err.Error()))
+			return
+		}
+		db.Close()
 	}
-	db.Close()
 }
 
 // GetMainDsn : getting main dsn
