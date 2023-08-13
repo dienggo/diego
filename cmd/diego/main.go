@@ -15,8 +15,8 @@ const (
 	name        = "diego"
 	usage       = "diego"
 	greetings   = "Hi, welcome to diego framework!"
-	version     = "v1.2.6"
-	nextVersion = "v1.2.7"
+	version     = "v1.2.7"
+	nextVersion = "v1.2.8"
 )
 
 type ICommand interface {
@@ -57,7 +57,6 @@ func commandRegistry() []ICommand {
 		generate.New(),
 		migration.New(),
 		update.New(nextVersion, version),
-		// server.New(),
 	}
 }
 
