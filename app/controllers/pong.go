@@ -4,8 +4,8 @@ import "github.com/gin-gonic/gin"
 
 type Pong struct{}
 
-func (controller Pong) Pong(c *gin.Context) {
+func (ctrl Pong) Main(c *gin.Context) {
 	c.JSON(200, gin.H{
-		"message": "pong 2",
+		"message": "Pong!",
 	})
 }

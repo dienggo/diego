@@ -1,4 +1,4 @@
-package middleware
+package app
 
 import "github.com/gin-gonic/gin"
 
@@ -6,7 +6,7 @@ type IMiddleware interface {
 	Handle(c *gin.Context)
 }
 
-func Add(middlewares ...IMiddleware) (a add) {
+func AddMiddleware(middlewares ...IMiddleware) (a add) {
 	a = add{}
 	var ms []IMiddleware
 	for _, middleware := range middlewares {

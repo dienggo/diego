@@ -1,4 +1,4 @@
-package services
+package app
 
 import "encoding/json"
 
@@ -46,4 +46,14 @@ func SRSuccess(result any) ServiceResponse {
 // SRFail : return result with error data
 func SRFail(err error, result any) ServiceResponse {
 	return ServiceResponse{err: err, result: result}
+}
+
+// Service : for service extends reason
+type Service ServiceResponse
+
+func (Service) Success(result any) ServiceResponse {
+	return SRSuccess(result)
+}
+func (Service) Error(err error, result any) ServiceResponse {
+	return SRFail(err, result)
 }

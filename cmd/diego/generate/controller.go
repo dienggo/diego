@@ -39,7 +39,22 @@ import "github.com/gin-gonic/gin"
 
 type ` + structName + ` struct{}
 
-func (ctrl ` + structName + `) Main(c *gin.Context) {
+// View : to show data detail on ` + structName + `
+func (ctrl ` + structName + `) View(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "Hello world!",
+	})
+}
+
+// Upsert : to update/insert data on ` + structName + `
+func (ctrl ` + structName + `) Upsert(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "Hello world!",
+	})
+}
+
+// Delete : to delete data on ` + structName + `
+func (ctrl ` + structName + `) Delete(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"message": "Hello world!",
 	})

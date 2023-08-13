@@ -4,7 +4,8 @@ App Structure :
 ```
 - app -> all logic of application requirement
     - controllers -> controller to consume on route
-    - dto -> data transfer object (request, response)
+    - dto_request -> data transfer object request
+    - dto_response -> data transfer object response
     - middleware -> middleware of the app
     - models -> model of database
     - repositories -> repository to encapsulation query or fetch data
@@ -29,7 +30,7 @@ App Structure :
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.2.7
+go install github.com/dienggo/diego/cmd/diego@v1.2.8
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -142,4 +143,18 @@ Cause this framework depends on `goose`, install `goose` first ---> https://gith
   ```shell
   diego migration validate
   ```             
-
+### Library Usage
+```
+github.com/getsentry/sentry-go v0.22.0
+github.com/gin-gonic/gin v1.8.1
+github.com/go-playground/validator/v10 v10.11.1
+github.com/google/uuid v1.3.0
+github.com/joho/godotenv v1.4.0
+github.com/sirupsen/logrus v1.9.3
+github.com/stretchr/testify v1.8.2
+github.com/urfave/cli/v2 v2.25.7
+golang.org/x/text v0.8.0
+gopkg.in/yaml.v2 v2.4.0
+gorm.io/driver/mysql v1.3.4
+gorm.io/gorm v1.23.7
+```
