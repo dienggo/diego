@@ -55,7 +55,9 @@ func New` + structName + `() ` + structName + ` {
 	return ` + structName + `{}
 }
 
-type ` + structName + ` struct{}
+type ` + structName + ` struct{
+	app.Service
+}
 
 func (s ` + structName + `) Do() app.ServiceResponse {
 	// TODO : Implement me
