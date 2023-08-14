@@ -50,6 +50,11 @@ func (c service) build(serviceName string) {
 
 import "` + moduleName + `/pkg/app"
 
+// New` + structName + ` : to simplify service call
+func New` + structName + `() ` + structName + ` {
+	return ` + structName + `{}
+}
+
 type ` + structName + ` struct{}
 
 func (s ` + structName + `) Do() app.ServiceResponse {

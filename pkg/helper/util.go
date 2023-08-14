@@ -294,6 +294,12 @@ func StringToInt(str string) int {
 	return i1
 }
 
+// StringToUint ..
+func StringToUint(str string) uint {
+	i1, _ := strconv.Atoi(str)
+	return uint(i1)
+}
+
 // StringToInt64 ...
 func StringToInt64(str string) int64 {
 	i64, _ := strconv.ParseInt(str, 10, 64)
