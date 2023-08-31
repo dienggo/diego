@@ -1,7 +1,7 @@
 package update
 
 import (
-	"github.com/dienggo/diego/pkg/logger"
+	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/exec"
@@ -47,7 +47,7 @@ func (c update) setOutputCmd(cmd *exec.Cmd) error {
 	// Run the git clone command
 	err := cmd.Run()
 	if err != nil {
-		logger.Error("Error get update : " + err.Error())
+		log.Error("Error get update : " + err.Error())
 		return err
 	}
 	return nil

@@ -1,7 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gorilla/mux"
+)
 
 type IRoute interface {
-	Do(route *gin.Engine)
+	Do(route *mux.Router)
 }

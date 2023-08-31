@@ -2,7 +2,7 @@ package database
 
 import (
 	"github.com/dienggo/diego/config"
-	"github.com/dienggo/diego/pkg/logger"
+	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -52,7 +52,7 @@ func Close() {
 		isConnected = false
 		db, err := openConnection().Main().DB()
 		if err != nil {
-			logger.Error("Close Connection", logger.SetField("error", err.Error()))
+			log.Error("Close Connection", err.Error())
 			return
 		}
 		db.Close()
@@ -68,13 +68,13 @@ func GetMainDsn() string {
 func openConnection() *dbc {
 	err := checkDatabaseConnectionSupport()
 	if err != nil {
-		logger.Fatal("CheckDatabaseConnectionSupport on openConnection", logger.SetField("error", err.Error()))
+		log.Fatal("CheckDatabaseConnectionSupport on openConnection", err.Error())
 		panic(err.Error())
 	}
 
 	var db = config.Database()
 	if db.Name == "" && db.Username == "" {
-		logger.Warn("DB Name & DB Username Empty on openConnection")
+		log.Warn("DB Name & DB Username Empty on openConnection")
 		println("[WARNING] App running without database connection")
 		return &dbc{}
 	}

@@ -3,12 +3,12 @@ package build
 import (
 	"errors"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"os"
 	"os/exec"
 	"runtime"
 
 	"github.com/dienggo/diego/pkg/helper"
-	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 )
 
@@ -72,10 +72,10 @@ func buildProject(projectName string) {
 
 	err = exec.Command(terminal, "-c", sCommandReplace).Run()
 	if err != nil {
-		logger.Fatal("Error buildProject sCommandReplace : " + err.Error())
+		log.Fatal("Error buildProject sCommandReplace : ", err.Error())
 	}
 	err = exec.Command(terminal, "-c", sCommand).Run()
 	if err != nil {
-		logger.Fatal("Error buildProject sCommand : " + err.Error())
+		log.Fatal("Error buildProject sCommand : ", err.Error())
 	}
 }
