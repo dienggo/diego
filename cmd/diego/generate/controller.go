@@ -35,27 +35,27 @@ func Controller(controllerName string) {
 	content :=
 		`package controllers
 
-import "github.com/gin-gonic/gin"
+import "net/http"
 
 type ` + structName + ` struct{}
 
 // View : to show data detail on ` + structName + `
-func (ctrl ` + structName + `) View(c *gin.Context) {
-	c.JSON(200, gin.H{
+func (ctrl ` + structName + `) View(w http.ResponseWriter, r *http.Request) {
+	render.Json(w, http.StatusOK, map[string]any{
 		"message": "Hello world!",
 	})
 }
 
 // Upsert : to update/insert data on ` + structName + `
-func (ctrl ` + structName + `) Upsert(c *gin.Context) {
-	c.JSON(200, gin.H{
+func (ctrl ` + structName + `) Upsert(w http.ResponseWriter, r *http.Request) {
+	render.Json(w, http.StatusOK, map[string]any{
 		"message": "Hello world!",
 	})
 }
 
 // Delete : to delete data on ` + structName + `
-func (ctrl ` + structName + `) Delete(c *gin.Context) {
-	c.JSON(200, gin.H{
+func (ctrl ` + structName + `) Delete(w http.ResponseWriter, r *http.Request) {
+	render.Json(w, http.StatusOK, map[string]any{
 		"message": "Hello world!",
 	})
 }

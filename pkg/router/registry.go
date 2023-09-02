@@ -3,17 +3,18 @@ package router
 import (
 	"fmt"
 	"github.com/dienggo/diego/config"
-	"github.com/dienggo/diego/pkg/logger"
 	"github.com/dienggo/diego/routes"
-	"github.com/gin-gonic/gin"
+	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 var routeRegistry = []IRoute{
 	routes.Api{},
-	routes.Web{},
 }
 
 // New : new route instance
@@ -33,23 +34,28 @@ func (r route) OnDone(onDone func()) route {
 
 // Run routers registered
 func (r route) Run() {
-	if config.App().Debug == false {
-		gin.SetMode("release")
-	}
 
-	router := gin.Default()
-
-	router.Use(handler)
+	router := mux.NewRouter()
 
 	// bind route registered
 	for _, r := range routeRegistry {
 		r.Do(router)
 	}
 
+	router.Use(httpHandler)
+
 	// Start the server in a separate goroutine
+	server := http.Server{
+		Addr:         ":" + config.App().Port,
+		ReadTimeout:  time.Duration(5) * time.Second,
+		WriteTimeout: time.Duration(15) * time.Second,
+		Handler:      router,
+	}
+
 	go func() {
-		if err := router.Run(":" + config.App().Port); err != nil {
-			logger.Fatal("Error HTTP Server", logger.SetField("error", err.Error()))
+		err := server.ListenAndServe()
+		if err != http.ErrServerClosed {
+			log.Error("http server got error", err.Error())
 		}
 	}()
 
@@ -61,5 +67,5 @@ func (r route) Run() {
 	// Perform cleanup and shutdown tasks
 	fmt.Println("Shutting down gracefully...")
 	r.onDone()
-	fmt.Println("Goodbye!")
+	fmt.Println("....Goodbye!")
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/dienggo/diego/cmd/diego/generate"
 	"github.com/dienggo/diego/cmd/diego/migration"
 	"github.com/dienggo/diego/cmd/diego/update"
-	"github.com/dienggo/diego/pkg/logger"
+	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 	"os"
 )
@@ -15,8 +15,8 @@ const (
 	name        = "diego"
 	usage       = "diego"
 	greetings   = "Hi, welcome to diego framework!"
-	version     = "v1.3.0"
-	nextVersion = "v1.3.1"
+	version     = "v1.3.1"
+	nextVersion = "v1.3.2"
 )
 
 type ICommand interface {
@@ -24,7 +24,6 @@ type ICommand interface {
 }
 
 func main() {
-	logger.SetJSONFormatter()
 	app := &cli.App{
 		Name:  name,
 		Usage: usage,
@@ -51,7 +50,7 @@ func main() {
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		logger.Error("Error Command", logger.SetField("error", err.Error()))
+		log.Error("Error Command", err.Error())
 	}
 }
 

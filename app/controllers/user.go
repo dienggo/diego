@@ -6,8 +6,10 @@ import (
 	"github.com/dienggo/diego/app/models"
 	"github.com/dienggo/diego/app/repositories"
 	"github.com/dienggo/diego/app/services"
+	"github.com/dienggo/diego/pkg/app"
 	"github.com/dienggo/diego/pkg/helper"
-	"github.com/gin-gonic/gin"
+	"github.com/dienggo/diego/pkg/render"
+	"github.com/gorilla/mux"
 	"net/http"
 )
 
@@ -15,16 +17,16 @@ type User struct{}
 
 // View : to show data detail on User
 // Example no effort logic
-func (ctrl User) View(c *gin.Context) {
-	err, user := repositories.User{}.Find(helper.StringToUint(c.Param("id")))
+func (ctrl User) View(w http.ResponseWriter, r *http.Request) {
+	err, user := repositories.User{}.Find(helper.StringToUint(mux.Vars(r)["id"]))
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
+		render.Json(w, http.StatusNotFound, map[string]any{
 			"message": err.Error(),
 		})
 		return
 	}
 
-	c.JSON(200, gin.H{
+	render.Json(w, 200, map[string]any{
 		"message": "Loaded",
 		"user":    dto_response.User(user),
 	})
@@ -32,11 +34,11 @@ func (ctrl User) View(c *gin.Context) {
 
 // Upsert : to update/insert data on User
 // Example execute logic in service
-func (ctrl User) Upsert(c *gin.Context) {
+func (ctrl User) Upsert(w http.ResponseWriter, r *http.Request) {
 	var req dto_request.User
-	err := c.Bind(&req)
+	err := app.NewHttpProcessor(r).Cast(&req)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
+		render.Json(w, http.StatusBadRequest, map[string]any{
 			"message": err.Error(),
 		})
 		return
@@ -44,7 +46,7 @@ func (ctrl User) Upsert(c *gin.Context) {
 
 	service := services.NewUpsertUser(req).Do()
 	if service.Error() != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
+		render.Json(w, http.StatusBadRequest, map[string]any{
 			"message": service.Error().Error(),
 		})
 		return
@@ -53,28 +55,28 @@ func (ctrl User) Upsert(c *gin.Context) {
 	var user *models.User
 	err = service.ResultParse(&user)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
+		render.Json(w, http.StatusBadRequest, map[string]any{
 			"message": err.Error(),
 		})
 		return
 	}
 
-	c.JSON(200, gin.H{
+	render.Json(w, http.StatusOK, map[string]any{
 		"message": "Inserted/Updated data",
 		"user":    dto_response.User(*user),
 	})
 }
 
 // Delete : to delete data on User
-func (ctrl User) Delete(c *gin.Context) {
-	err := repositories.User{}.Delete(helper.StringToUint(c.Param("id")))
+func (ctrl User) Delete(w http.ResponseWriter, r *http.Request) {
+	err := repositories.User{}.Delete(helper.StringToUint(mux.Vars(r)["id"]))
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
+		render.Json(w, http.StatusNotFound, map[string]any{
 			"message": err.Error(),
 		})
 		return
 	}
-	c.JSON(200, gin.H{
+	render.Json(w, http.StatusOK, map[string]any{
 		"message": "User deleted",
 	})
 }

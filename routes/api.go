@@ -3,21 +3,21 @@ package routes
 import (
 	"github.com/dienggo/diego/app/controllers"
 	"github.com/dienggo/diego/app/middleware"
-	"github.com/dienggo/diego/pkg/app"
-	"github.com/gin-gonic/gin"
+	"github.com/gorilla/mux"
+	"net/http"
 )
 
 type Api struct{}
 
-func (a Api) Do(route *gin.Engine) {
-	api := route.Group("/api", app.AddMiddleware(middleware.App{}).Handle)
+func (a Api) Do(route *mux.Router) {
+	api := route.PathPrefix("/api").Subrouter()
+	api.Use(middleware.App)
 
-	// example test api on controller, please delete soon
-	api.GET("/ping", controllers.Pong{}.Main)
-	api.GET("/user/:id", controllers.User{}.View)
-	api.DELETE("/user/:id", controllers.User{}.Delete)
+	// example api route handler
+	api.HandleFunc("/ping", controllers.Ping{}.Main).Methods(http.MethodGet)
 
-	// example test api on controller with service, please delete soon
-	api.POST("/user", controllers.User{}.Upsert)
-
+	user := api.PathPrefix("/user").Subrouter()
+	user.HandleFunc("", controllers.User{}.Upsert).Methods(http.MethodPost)
+	user.HandleFunc("/{id:[0-9]+}", controllers.User{}.View).Methods(http.MethodGet)
+	user.HandleFunc("/{id:[0-9]+}", controllers.User{}.Delete).Methods(http.MethodDelete)
 }

@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 	"github.com/dienggo/diego/config"
-	"github.com/dienggo/diego/pkg/logger"
+	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"strings"
@@ -16,7 +16,7 @@ func connectToMySql(username string, password string, host string, port string, 
 	sqlDB, err1 := sql.Open(MYSQL, dsn)
 
 	if err1 != nil {
-		logger.Fatal("Fail open connection to mysql", logger.SetField("error", err1.Error()))
+		log.Fatal("Fail open connection to mysql ", err1.Error())
 	}
 
 	gormDB, err2 := gorm.Open(mysql.New(mysql.Config{
@@ -25,7 +25,7 @@ func connectToMySql(username string, password string, host string, port string, 
 	}), &gorm.Config{})
 
 	if err2 != nil {
-		logger.Fatal("Fail connect to mysql", logger.SetField("error", err2.Error()))
+		log.Fatal("Fail connect to mysql", err2.Error())
 	}
 
 	return gormDB

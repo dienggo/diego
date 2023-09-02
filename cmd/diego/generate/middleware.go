@@ -38,21 +38,14 @@ func (c middleware) build(middlewareName string) {
 		`package middleware
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-type ` + structName + ` struct{}
-
-func (` + structName + `) Handle(c *gin.Context) {
-	// just for example
-	condition := false
-	if !condition {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
-			"message": "you can't do this!",
-		})
-		return
-	}
+func ` + structName + `(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// TODO : write your business logic here 
+		h.ServeHTTP(w, r)
+	})
 }`
 	err := file.Create(fileName, content)
 	if err != nil {

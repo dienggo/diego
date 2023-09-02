@@ -30,7 +30,7 @@ App Structure :
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.3.0
+go install github.com/dienggo/diego/cmd/diego@v1.3.1
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -145,10 +145,10 @@ Cause this framework depends on `goose`, install `goose` first ---> https://gith
   ```             
 ### Library Usage
 ```
-github.com/getsentry/sentry-go v0.22.0
-github.com/gin-gonic/gin v1.8.1
 github.com/go-playground/validator/v10 v10.11.1
 github.com/google/uuid v1.3.0
+github.com/gorilla/mux v1.8.0
+github.com/gorilla/schema v1.2.0
 github.com/joho/godotenv v1.4.0
 github.com/sirupsen/logrus v1.9.3
 github.com/stretchr/testify v1.8.2

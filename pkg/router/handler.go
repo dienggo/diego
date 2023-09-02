@@ -3,45 +3,74 @@ package router
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/dienggo/diego/pkg/logger"
-	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 	"io"
+	"net/http"
 	"time"
 )
 
-func handler(context *gin.Context) {
-	timeStart := time.Now()
-	body, _ := io.ReadAll(context.Request.Body)
-	context.Request.Body = io.NopCloser(bytes.NewReader(body))
-	context.Next()
+// statusRecorder implement and extends ResponseWriter
+type statusRecorder struct {
+	http.ResponseWriter
+	Status int
+}
 
-	request, _ := json.Marshal(context.Request.URL)
-	header, _ := json.Marshal(context.Request.Header)
+// WriteHeader sends an HTTP response header with the provided
+// status code.
+//
+// If WriteHeader is not called explicitly, the first call to Write
+// will trigger an implicit WriteHeader(http.StatusOK).
+// Thus explicit calls to WriteHeader are mainly used to
+// send error codes or 1xx informational responses.
+//
+// The provided code must be a valid HTTP 1xx-5xx status code.
+// Any number of 1xx headers may be written, followed by at most
+// one 2xx-5xx header. 1xx headers are sent immediately, but 2xx-5xx
+// headers may be buffered. Use the Flusher interface to send
+// buffered data. The header map is cleared when 2xx-5xx headers are
+// sent, but not with 1xx headers.
+//
+// The server will automatically send a 100 (Continue) header
+// on the first read from the request body if the request has
+// an "Expect: 100-continue" header.
+func (r *statusRecorder) WriteHeader(status int) {
+	r.Status = status
+	r.ResponseWriter.WriteHeader(status)
+}
 
-	// Calculate response time
-	timeEnd := time.Now()
-	responseTime := timeEnd.Sub(timeStart)
+func httpHandler(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		timeStart := time.Now()
+		body, _ := io.ReadAll(r.Body)
+		r.Body = io.NopCloser(bytes.NewReader(body))
 
-	wrapped := map[string]any{
-		"status":            context.Writer.Status(),
-		"url":               context.Request.URL,
-		"request":           string(request),
-		"body":              string(body),
-		"header":            string(header),
-		"client_ip":         context.ClientIP(),
-		"remote_ip":         context.RemoteIP(),
-		"response_time_mcs": responseTime.Microseconds(),
-	}
+		recorder := &statusRecorder{
+			ResponseWriter: w,
+			Status:         200,
+		}
+		h.ServeHTTP(recorder, r)
 
-	var loggerFields []logger.Field
+		request, _ := json.Marshal(r.URL)
+		header, _ := json.Marshal(r.Header)
 
-	for key, val := range wrapped {
-		loggerFields = append(loggerFields, logger.SetField(key, val))
-	}
+		// Calculate response time
+		timeEnd := time.Now()
+		responseTime := timeEnd.Sub(timeStart)
+		wrapped := map[string]any{
+			"status":            recorder.Status,
+			"url":               r.URL,
+			"request":           string(request),
+			"body":              string(body),
+			"header":            string(header),
+			"client_ip":         r.RemoteAddr,
+			"remote_ip":         r.RemoteAddr,
+			"response_time_mcs": responseTime.Microseconds(),
+		}
 
-	if context.Writer.Status() >= 400 {
-		logger.Error("Error HTTP Observer "+context.Request.URL.Path, loggerFields...)
-	} else {
-		logger.Info("Info HTTP Observer "+context.Request.URL.Path, loggerFields...)
-	}
+		if recorder.Status >= 400 {
+			log.Error("Error HTTP Observer "+r.URL.Path, wrapped)
+		} else {
+			log.Info("Info HTTP Observer "+r.URL.Path, wrapped)
+		}
+	})
 }

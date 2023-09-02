@@ -1,6 +1,7 @@
 package migration
 
 import (
+	log "github.com/sirupsen/logrus"
 	"os"
 	"os/exec"
 	"runtime"
@@ -9,7 +10,6 @@ import (
 	"github.com/dienggo/diego/config"
 	"github.com/dienggo/diego/pkg/database"
 	"github.com/dienggo/diego/pkg/environment"
-	"github.com/dienggo/diego/pkg/logger"
 	"github.com/urfave/cli/v2"
 )
 
@@ -76,7 +76,7 @@ func migrate(get string, cdMigration bool) {
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
-		logger.Error("Error Migration", logger.SetField("error", err.Error()))
+		log.Error("Error Migration", err.Error())
 		return
 	}
 }
