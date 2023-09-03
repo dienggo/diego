@@ -2,7 +2,6 @@ package router
 
 import (
 	"bytes"
-	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"io"
 	"net/http"
@@ -50,27 +49,24 @@ func httpHandler(h http.Handler) http.Handler {
 		}
 		h.ServeHTTP(recorder, r)
 
-		request, _ := json.Marshal(r.URL)
-		header, _ := json.Marshal(r.Header)
-
 		// Calculate response time
 		timeEnd := time.Now()
 		responseTime := timeEnd.Sub(timeStart)
-		wrapped := map[string]any{
+		wrapped := log.Fields{
 			"status":            recorder.Status,
-			"url":               r.URL,
-			"request":           string(request),
+			"method":            r.Method,
+			"url":               r.URL.Path,
 			"body":              string(body),
-			"header":            string(header),
+			"header":            r.Header,
 			"client_ip":         r.RemoteAddr,
 			"remote_ip":         r.RemoteAddr,
 			"response_time_mcs": responseTime.Microseconds(),
 		}
 
 		if recorder.Status >= 400 {
-			log.Error("Error HTTP Observer "+r.URL.Path, wrapped)
+			log.WithFields(wrapped).Error("Error HTTP Observer " + r.URL.Path)
 		} else {
-			log.Info("Info HTTP Observer "+r.URL.Path, wrapped)
+			log.WithFields(wrapped).Info("Info HTTP Observer " + r.URL.Path)
 		}
 	})
 }

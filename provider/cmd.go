@@ -4,6 +4,7 @@ import (
 	"github.com/dienggo/diego/cmd"
 	"github.com/dienggo/diego/pkg/database"
 	"github.com/dienggo/diego/pkg/environment"
+	"github.com/dienggo/diego/pkg/logger"
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 	"os"
@@ -21,6 +22,9 @@ func commands() cli.Commands {
 func RunCmd() {
 	// Load environment
 	environment.Load()
+
+	// set logger setup
+	logger.Initiate()
 
 	app := &cli.App{
 		Name:     "github.com/dienggo/diego",

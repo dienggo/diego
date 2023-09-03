@@ -4,6 +4,7 @@ import (
 	"github.com/dienggo/diego/config"
 	"github.com/dienggo/diego/pkg/database"
 	"github.com/dienggo/diego/pkg/router"
+	log "github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -22,7 +23,10 @@ func (app App) Start() {
 	println("------------------------------------------------------------\n")
 
 	// Set time zone application
-	time.LoadLocation(config.App().TimeZone)
+	_, err := time.LoadLocation(config.App().TimeZone)
+	if err != nil {
+		log.Panicf("Fail when set time zone", err.Error())
+	}
 
 	// Load database
 	database.Open()
