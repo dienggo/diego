@@ -31,11 +31,17 @@ func Controller(controllerName string) {
 	structName := cases.Title(language.English, cases.NoLower).String(strings.Replace(fileName, "app/controllers/", "", -1))
 
 	structName = buildStructName(structName)
+
+	pkgRenderer := helper.GetModuleName() + "/pkg/render"
+
 	// Write content to the file.
 	content :=
 		`package controllers
 
-import "net/http"
+import (
+	"` + pkgRenderer + `"
+	"net/http"
+)
 
 type ` + structName + ` struct{}
 
