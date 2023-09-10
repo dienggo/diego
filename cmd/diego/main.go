@@ -15,8 +15,8 @@ const (
 	name        = "diego"
 	usage       = "diego"
 	greetings   = "Hi, welcome to diego framework!"
-	version     = "v1.3.3"
-	nextVersion = "v1.3.4"
+	version     = "v1.4.0"
+	nextVersion = "v1.4.1"
 )
 
 type ICommand interface {
@@ -50,7 +50,7 @@ func main() {
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		log.Error("Error Command", err.Error())
+		log.Error("Error Command : ", err.Error())
 	}
 }
 

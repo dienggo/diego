@@ -57,3 +57,6 @@ func (Service) Success(result any) ServiceResponse {
 func (Service) Error(err error, result any) ServiceResponse {
 	return SRFail(err, result)
 }
+func (s Service) DataParse(target any) error {
+	return new(response).ResultParse(&target)
+}

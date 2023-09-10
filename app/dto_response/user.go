@@ -20,3 +20,10 @@ func User(mUser models.User) user {
 		CreatedAt: mUser.CreatedAt,
 	}
 }
+
+func Users(mUsers []models.User) (users []user) {
+	for _, mUser := range mUsers {
+		users = append(users, User(mUser))
+	}
+	return users
+}

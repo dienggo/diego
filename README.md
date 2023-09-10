@@ -10,6 +10,7 @@ App Structure :
     - models -> model of database
     - repositories -> repository to encapsulation query or fetch data
     - services -> to build logic of the app
+    - ucase -> to build specific logic and generate response formatted to consume by route
 - config -> configuration app
 - pkg -> package usage in app
 - provider -> behavior app needed
@@ -30,7 +31,7 @@ App Structure :
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.3.3
+go install github.com/dienggo/diego/cmd/diego@v1.4.0
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -66,6 +67,17 @@ diego update
     diego generate controller example_case
     ```
     example_case -> your controller & controller stored to `app/controllers/example_case.go`
+- #### Make UseCase all template
+    generate all template of `use case` [delete.go][detail.go][list.go][upsert.go]
+    ```shell
+    diego generate ucase example
+    ```
+    exampleCase -> your `use case` & `use case` stored to `app/ucase/exampleCase`
+- #### Make UseCase partial
+    ```shell
+    diego generate ucase custom exampleCase
+    ```
+    custom -> your `use case` & `use case` stored to `app/ucase/exampleCase/custom.go`
 - #### Make Service
     ```shell
     diego generate service example_case
