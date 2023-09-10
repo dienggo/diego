@@ -40,7 +40,7 @@ func JsonFormattedPaginate(w http.ResponseWriter, code int, message string, data
 		"next":  next,
 		"count": count,
 	}
-	if prev < 1 {
+	if prev < 0 {
 		meta["prev"] = nil
 	}
 	if count < limit {
