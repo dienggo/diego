@@ -2,13 +2,11 @@ package generate
 
 import (
 	"errors"
-	"fmt"
 	"github.com/dienggo/diego/pkg/file"
 	"github.com/dienggo/diego/pkg/helper"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
-	"os"
 	"strings"
 )
 
@@ -36,13 +34,7 @@ func (c service) build(serviceName string) {
 
 	structName = buildStructName(structName)
 
-	goModPath := "go.mod" // Path to the go.mod file
-
-	moduleName, err := getModuleName(goModPath)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	moduleName := helper.GetModuleName()
 
 	// Write content to the file.
 	content :=
@@ -64,25 +56,8 @@ func (s ` + structName + `) Do() app.ServiceResponse {
 	panic("Implement me")
 }
 `
-	err = file.Create(fileName, content)
+	err := file.Create(fileName, content)
 	if err != nil {
 		return
 	}
-}
-
-func getModuleName(goModPath string) (string, error) {
-	data, err := os.ReadFile(goModPath)
-	if err != nil {
-		return "", err
-	}
-
-	lines := strings.Split(string(data), "\n")
-	for _, line := range lines {
-		if strings.HasPrefix(line, "module ") {
-			moduleName := strings.TrimSpace(strings.TrimPrefix(line, "module"))
-			return moduleName, nil
-		}
-	}
-
-	return "", fmt.Errorf("module name not found in %s", goModPath)
 }

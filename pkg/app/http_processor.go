@@ -19,7 +19,7 @@ func NewHttpProcessor(request *http.Request) HttpProcessor {
 	return &httpProcessor{Request: request}
 }
 
-// httpProcessor context untuk http UseCase
+// httpProcessor context untuk http UseCaseHandler
 type httpProcessor struct {
 	Request *http.Request
 }
@@ -36,16 +36,16 @@ func (d *httpProcessor) Cast(target interface{}) error {
 
 func (d *httpProcessor) httpCast(target interface{}) error {
 	if d.Request == nil {
-		return fmt.Errorf("unable to cast http data, null request")
+		return fmt.Errorf("unable to cast http data, null Request")
 	}
 
-	// httpCast transform request payload data
+	// httpCast transform Request payload data
 	// GET -> params-query-string
 	// POST -> json-body
 	if err := d.grabMethod(target); err != nil {
 		return err
 	}
-	// validate payload request or params
+	// validate payload Request or params
 	return validates.ValidateStructFormatted(target)
 }
 
@@ -60,7 +60,7 @@ func (d *httpProcessor) transform(target interface{}, src map[string][]string) e
 	return nil
 }
 
-// Grab request method
+// Grab Request method
 // Take a destination source of struct
 func (d *httpProcessor) grabMethod(target interface{}) error {
 	switch d.Request.Method {
@@ -88,7 +88,7 @@ func (d *httpProcessor) decodeJSON(body io.ReadCloser, dst interface{}) error {
 	}
 	err := json.NewDecoder(body).Decode(dst)
 	if err != nil {
-		return fmt.Errorf("unable decode request body, err:%s", err.Error())
+		return fmt.Errorf("unable decode Request body, err:%s", err.Error())
 	}
 
 	return nil

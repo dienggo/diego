@@ -10,6 +10,7 @@ type IUser interface {
 	Upsert(user *models.User) error
 	Delete(id uint) error
 	Find(id uint) (err error, user models.User)
+	Get(limit int, page int) (err error, users []models.User)
 }
 
 type User struct{}
@@ -34,4 +35,9 @@ func (User) Delete(id uint) error {
 func (User) Find(id uint) (err error, user models.User) {
 	err = database.Main().Where("id = ?", id).First(&user).Error
 	return err, user
+}
+
+func (User) Get(limit int, page int) (err error, users []models.User) {
+	err = database.Main().Limit(limit).Offset(page * limit).Order("id desc").Find(&users).Error
+	return err, users
 }
