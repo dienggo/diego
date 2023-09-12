@@ -2,6 +2,8 @@ package test
 
 import (
 	"testing"
+
+	"github.com/dienggo/diego/pkg/validates"
 )
 
 type Example struct {
