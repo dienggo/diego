@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/dienggo/diego/cmd/diego/build"
 	"github.com/dienggo/diego/cmd/diego/generate"
 	"github.com/dienggo/diego/cmd/diego/migration"
 	"github.com/dienggo/diego/cmd/diego/update"
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
-	"os"
 )
 
 const (

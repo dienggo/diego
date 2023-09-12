@@ -3,12 +3,12 @@ package build
 import (
 	"errors"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"os"
 	"os/exec"
 	"runtime"
 
 	"github.com/dienggo/diego/pkg/helper"
+	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 )
 
@@ -72,10 +72,51 @@ func buildProject(projectName string) {
 
 	err = exec.Command(terminal, "-c", sCommandReplace).Run()
 	if err != nil {
-		log.Fatal("Error buildProject sCommandReplace : ", err.Error())
+		err = nil
+		buildOnUbuntuOS(baseProjectName, destinationDir)
 	}
 	err = exec.Command(terminal, "-c", sCommand).Run()
 	if err != nil {
 		log.Fatal("Error buildProject sCommand : ", err.Error())
 	}
+}
+
+func buildOnUbuntuOS(baseProjectName string, destinationDir string) {
+	// Define the directory where you want to replace the string.
+	directory := destinationDir
+
+	// Define the old and new strings.
+	oldString := baseProjectName
+	newString := destinationDir
+
+	// Run the find and sed commands using exec.Command.
+	cmdFind := exec.Command("find", directory, "-type", "f", "-name", "*.go")
+	cmdSed := exec.Command("xargs", "sed", "-i", fmt.Sprintf("s|%s|%s|g", oldString, newString))
+
+	// Pipe the output of cmdFind to cmdSed.
+	cmdSed.Stdin, _ = cmdFind.StdoutPipe()
+
+	// Start both commands.
+	if err := cmdFind.Start(); err != nil {
+		fmt.Println("Error starting find:", err)
+		os.Exit(1)
+	}
+
+	if err := cmdSed.Start(); err != nil {
+		fmt.Println("Error starting sed:", err)
+		os.Exit(1)
+	}
+
+	// Wait for both commands to finish.
+	if err := cmdFind.Wait(); err != nil {
+		fmt.Println("Error waiting for find:", err)
+		os.Exit(1)
+	}
+
+	if err := cmdSed.Wait(); err != nil {
+		fmt.Println("Error waiting for sed:", err)
+		os.Exit(1)
+	}
+
+	fmt.Println("String replacement complete.")
 }
