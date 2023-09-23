@@ -31,7 +31,7 @@ App Structure :
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@v1.4.1
+go install github.com/dienggo/diego/cmd/diego@v1.4.2
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
@@ -88,6 +88,11 @@ diego update
     diego generate service example_case
     ```
     example_case -> your middleware & middleware stored to `app/middleware/example_case.go`
+- #### Make Background Service
+    ```shell
+    diego generate bg-task example_task
+    ```
+  example_task -> your background service & background service stored to `app/background/example_task.go`
 - #### Make Command
     ```shell
     diego generate cmd example_case

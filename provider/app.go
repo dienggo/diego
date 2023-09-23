@@ -35,9 +35,11 @@ func (app App) Start() {
 	router.New().OnDone(database.Close).Run()
 }
 
+// registry is method to execute all provider on this app
 func registry() {
 	providerRegistry{providers: []IProvider{
 		pLogger{},
+		appTask{},
 	}}.Provide()
 }
 

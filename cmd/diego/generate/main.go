@@ -40,6 +40,7 @@ func (gen generate) subCommands() (cmd []*cli.Command) {
 		command{},
 		mockRepo{},
 		ucase{},
+		task{},
 	}
 
 	for _, iCommand := range registered {
