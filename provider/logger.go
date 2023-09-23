@@ -10,6 +10,9 @@ import (
 type pLogger struct{}
 
 func (p pLogger) Provide() {
+	if config.App().Debug {
+		log.SetLevel(log.DebugLevel)
+	}
 	provideSentry()
 }
 
