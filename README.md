@@ -3,6 +3,7 @@
 App Structure : 
 ```
 - app -> all logic of application requirement
+    - background -> background service app handler
     - controllers -> controller to consume on route
     - dto_request -> data transfer object request
     - dto_response -> data transfer object response
