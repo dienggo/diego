@@ -49,7 +49,7 @@ func (r route) Run() {
 		Addr:         ":" + config.App().Port,
 		ReadTimeout:  time.Duration(5) * time.Second,
 		WriteTimeout: time.Duration(15) * time.Second,
-		Handler:      router,
+		Handler:      handleCORS(router),
 	}
 
 	go func() {
