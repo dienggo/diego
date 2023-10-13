@@ -86,7 +86,7 @@ diego update
     example_case -> your service & service stored to `app/services/example_case.go`
 - #### Make Middleware
     ```shell
-    diego generate service example_case
+    diego generate middleware example_case
     ```
     example_case -> your middleware & middleware stored to `app/middleware/example_case.go`
 - #### Make Background Service
