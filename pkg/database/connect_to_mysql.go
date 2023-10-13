@@ -11,7 +11,7 @@ import (
 
 // connectToMySql : Simplify method and reusable method to connect with mysql driver
 func connectToMySql(username string, password string, host string, port string, name string, useTimeStamp string) *gorm.DB {
-	dsn := username + ":" + password + "@tcp(" + host + ":" + port + ")/" + name + "?parseTime=" + strings.ToLower(useTimeStamp)
+	dsn := username + ":" + password + "@tcp(" + host + ":" + port + ")/" + name + "?parseTime=" + strings.ToLower(useTimeStamp) + "&loc=Local"
 	mainDsn = dsn
 	sqlDB, err1 := sql.Open(MYSQL, dsn)
 
