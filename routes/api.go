@@ -5,13 +5,19 @@ import (
 	"github.com/dienggo/diego/app/middleware"
 	"github.com/dienggo/diego/app/ucase/userCase"
 	"github.com/dienggo/diego/pkg/app"
+	"github.com/dienggo/diego/pkg/router"
 	"github.com/gorilla/mux"
 	"net/http"
 )
 
-type Api struct{}
+// NewApi : new instance Route Api
+func NewApi() router.IRoute {
+	return &api{}
+}
 
-func (a Api) Do(route *mux.Router) {
+type api struct{}
+
+func (a api) Do(route *mux.Router) {
 	api := route.PathPrefix("/api").Subrouter()
 	api.Use(middleware.App)
 

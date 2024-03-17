@@ -18,6 +18,10 @@ func tasks() []task.ITask {
 	}
 }
 
+func NewAppTaskProvider() IProvider {
+	return &appTask{}
+}
+
 type appTask struct{}
 
 func (t appTask) Provide() {

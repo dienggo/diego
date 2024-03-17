@@ -3,7 +3,6 @@ package router
 import (
 	"fmt"
 	"github.com/dienggo/diego/config"
-	"github.com/dienggo/diego/routes"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 	"net/http"
@@ -12,10 +11,6 @@ import (
 	"syscall"
 	"time"
 )
-
-var routeRegistry = []IRoute{
-	routes.Api{},
-}
 
 // New : new route instance
 func New() route {
@@ -33,7 +28,7 @@ func (r route) OnDone(onDone func()) route {
 }
 
 // Run routers registered
-func (r route) Run() {
+func (r route) Run(routeRegistry []IRoute) {
 
 	router := mux.NewRouter()
 

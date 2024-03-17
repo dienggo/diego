@@ -7,6 +7,10 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+func NewLoggerProvider() IProvider {
+	return &pLogger{}
+}
+
 type pLogger struct{}
 
 func (p pLogger) Provide() {

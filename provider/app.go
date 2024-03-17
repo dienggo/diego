@@ -2,8 +2,6 @@ package provider
 
 import (
 	"github.com/dienggo/diego/config"
-	"github.com/dienggo/diego/pkg/database"
-	"github.com/dienggo/diego/pkg/router"
 	log "github.com/sirupsen/logrus"
 	"time"
 )
@@ -16,8 +14,6 @@ type App struct{}
 
 // Start all application resource
 func (app App) Start() {
-	registry()
-
 	println("\n------------------------------------------------------------")
 	println(config.App().Name + " app starting")
 	println("------------------------------------------------------------\n")
@@ -28,18 +24,11 @@ func (app App) Start() {
 		log.Panicf("Fail when set time zone", err.Error())
 	}
 
-	// Load database
-	database.Open()
-
-	// Run route configuration
-	router.New().OnDone(database.Close).Run()
-}
-
-// registry is method to execute all provider on this app
-func registry() {
+	// execute all provider on this app
 	providerRegistry{providers: []IProvider{
-		pLogger{},
-		appTask{},
+		NewLoggerProvider(),
+		NewAppTaskProvider(),
+		NewRouteProvider(),
 	}}.Provide()
 }
 
