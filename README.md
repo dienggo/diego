@@ -14,7 +14,7 @@ App Structure :
 - config -> configuration app
 - pkg -> package usage in app
 - provider -> bootstraping behavior app needed
-- route -> app route (api/web)
+- route -> app route api
 ```
 
 ### Application Command Tools
