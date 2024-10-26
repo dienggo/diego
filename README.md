@@ -13,7 +13,7 @@ App Structure :
     - ucase -> to build specific logic and generate response formatted to consume by route
 - config -> configuration app
 - pkg -> package usage in app
-- provider -> behavior app needed
+- provider -> bootstraping behavior app needed
 - route -> app route (api/web)
 ```
 
