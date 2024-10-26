@@ -1,4 +1,4 @@
-package dto_request
+package request
 
 type User struct {
 	ID       int    `json:"id"`

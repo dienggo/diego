@@ -1,4 +1,4 @@
-package dto_response
+package presents
 
 import (
 	"github.com/dienggo/diego/app/models"

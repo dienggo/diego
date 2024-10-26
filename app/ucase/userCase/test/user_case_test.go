@@ -1,9 +1,9 @@
 package test
 
 import (
-	"github.com/dienggo/diego/app/dto_request"
 	"github.com/dienggo/diego/app/models"
 	"github.com/dienggo/diego/app/repositories"
+	"github.com/dienggo/diego/app/request"
 	"github.com/dienggo/diego/app/ucase/userCase"
 	"github.com/dienggo/diego/pkg/app"
 	"github.com/dienggo/diego/pkg/environment"
@@ -16,7 +16,7 @@ import (
 func TestUserUpsert(t *testing.T) {
 	environment.Load()
 
-	data := dto_request.User{
+	data := request.User{
 		ID:       1,
 		Name:     "Daewu",
 		Email:    "daewu@mail.com",

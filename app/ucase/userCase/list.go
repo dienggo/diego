@@ -1,7 +1,7 @@
 package userCase
 
 import (
-	"github.com/dienggo/diego/app/dto_response"
+	"github.com/dienggo/diego/app/presents"
 	"github.com/dienggo/diego/app/repositories"
 	"github.com/dienggo/diego/pkg/app"
 	"net/http"
@@ -32,7 +32,7 @@ func (c CaseList) Handle(uch app.UseCaseHandler) {
 		return
 	}
 
-	dataResponse := dto_response.Users(data)
+	dataResponse := presents.Users(data)
 
 	uch.JsonResponsePaginate(http.StatusOK, "User list loaded", dataResponse, len(dataResponse))
 }

@@ -5,13 +5,11 @@ App Structure :
 ```
 - app -> all logic of application requirement
     - background -> background service app handler
-    - controllers -> controller to consume on route
-    - dto_request -> data transfer object request
-    - dto_response -> data transfer object response
+    - request -> to collect all data request
+    - presents -> to create struct of response
     - middleware -> middleware of the app
     - models -> model of database
     - repositories -> repository to encapsulation query or fetch data
-    - services -> to build logic of the app
     - ucase -> to build specific logic and generate response formatted to consume by route
 - config -> configuration app
 - pkg -> package usage in app
@@ -64,11 +62,6 @@ diego update
     diego build awesome_project
     ```
   awesome_project -> your project name & module
-- #### Make Controller
-    ```shell
-    diego generate controller example_case
-    ```
-    example_case -> your controller & controller stored to `app/controllers/example_case.go`
 - #### Make UseCase all template
     generate all template of `use case` [delete.go][detail.go][list.go][upsert.go]
     ```shell
@@ -80,11 +73,6 @@ diego update
     diego generate ucase custom exampleCase
     ```
     custom -> your `use case` & `use case` stored to `app/ucase/exampleCase/custom.go`
-- #### Make Service
-    ```shell
-    diego generate service example_case
-    ```
-    example_case -> your service & service stored to `app/services/example_case.go`
 - #### Make Middleware
     ```shell
     diego generate middleware example_case

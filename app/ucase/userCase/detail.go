@@ -1,7 +1,7 @@
 package userCase
 
 import (
-	"github.com/dienggo/diego/app/dto_response"
+	"github.com/dienggo/diego/app/presents"
 	"github.com/dienggo/diego/app/repositories"
 	"github.com/dienggo/diego/pkg/app"
 	"github.com/dienggo/diego/pkg/helper"
@@ -31,6 +31,6 @@ func (c CaseDetail) Handle(uch app.UseCaseHandler) {
 		return
 	}
 
-	dataResponse := dto_response.User(data)
+	dataResponse := presents.User(data)
 	uch.Response().StatusOK("Detail data", dataResponse)
 }
