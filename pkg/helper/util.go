@@ -386,3 +386,12 @@ func StrFirstLetterToLower(s string) string {
 
 	return string(r)
 }
+
+// CapitalizeWords each word in the string
+func CapitalizeWords(s string) string {
+	words := strings.Fields(s)
+	for i, word := range words {
+		words[i] = strings.ToUpper(string(word[0])) + strings.ToLower(word[1:])
+	}
+	return strings.Join(words, " ")
+}

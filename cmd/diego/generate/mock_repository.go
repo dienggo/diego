@@ -46,6 +46,13 @@ func (c mockRepo) generate(repoName string) error {
 		return err
 	}
 
+	if len(methods) == 0 {
+		err, methods = c.getMethodByContractFile(repoName)
+		if err != nil {
+			return err
+		}
+	}
+
 	sMethods := ""
 	sResultMethods := ""
 	for _, method := range methods {
@@ -118,6 +125,47 @@ func (c mockRepo) getMethodByInterface(path string) (err error, methods []string
 
 		// get interface type
 		if strings.Contains(text, "type ") && strings.Contains(text, " interface") && iSelectedInterface == 0 {
+			iSelectedInterface = i
+			stopFindContract = false
+		}
+		i++
+	}
+	return nil, methods
+}
+
+func (c mockRepo) getMethodByContractFile(contract string) (err error, methods []string) {
+	open, err := os.Open("app/repositories/contract.go")
+	if err != nil {
+		return err, methods
+	}
+	defer func(open *os.File) {
+		err := open.Close()
+		if err != nil {
+		}
+	}(open)
+
+	scanner := bufio.NewScanner(open)
+
+	i := 0
+	iSelectedInterface := 0
+	stopFindContract := true
+	for scanner.Scan() {
+		text := scanner.Text()
+
+		if i > iSelectedInterface {
+			// get method contract from interface
+			if strings.Contains(text, "}") {
+				stopFindContract = true
+			}
+
+			// find method contract from interface
+			if !stopFindContract {
+				methods = append(methods, strings.TrimSpace(text))
+			}
+		}
+
+		// get interface type
+		if strings.Contains(text, "type ") && strings.Contains(text, helper.CapitalizeWords(contract)+" interface") && iSelectedInterface == 0 {
 			iSelectedInterface = i
 			stopFindContract = false
 		}

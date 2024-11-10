@@ -31,7 +31,7 @@ App Structure :
 ### Installation Diego tools :
 Get and install tools from github repo
 ```shell
-go install github.com/dienggo/diego/cmd/diego@ v1.5.0
+go install github.com/dienggo/diego/cmd/diego@v1.5.1
 ```
 Check your GOPATH location, windows -> skip this step
 ```shell
